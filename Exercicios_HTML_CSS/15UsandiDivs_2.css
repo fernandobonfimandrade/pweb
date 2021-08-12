@@ -1,9 +1,0 @@
-#box {
-  min-height:128px;
-  height:auto !important;
-  height:128px;
-  padding:5px;
-}
-#box img {
-  float:left;
-}
