@@ -1,0 +1,36 @@
+:root {
+    --margin: 10px;
+}
+
+/* variavel fica
+no elemento raiz */
+
+
+body {
+    padding: 10px;
+}
+
+.container-box {
+    display: flex; /** display flexbox **/
+    flex-wrap: wrap;
+    /* Define se os itens devem quebrar ou não a linha*/
+}
+
+.a {
+    width: calc((100%/3) - (var(--margin)* 2));
+}
+/* permite expressao
+matematica calc
+(largura total / 3) -margem *2 para
+poder caber os três*/
+
+.b {
+    width: calc((100%/5) - (var(--margin)* 2));
+}
+
+.box {
+    background-color: #dddddd;
+    border-radius: 5px;
+    margin: var(--margin);
+    height: 50px;
+}

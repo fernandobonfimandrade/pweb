@@ -1,0 +1,26 @@
+.geral {
+   display: "a a a" /150px
+ "b c d"
+ "e e e" /150px
+ 100px 400px 100px;
+}
+
+nav.menu {
+    position: a;
+}
+
+aside.menulateral {
+    position: b;
+}
+
+aside.publicidade {
+    position: d;
+}
+
+article.post {
+    position: c;
+}
+
+footer {
+    position: e;
+}

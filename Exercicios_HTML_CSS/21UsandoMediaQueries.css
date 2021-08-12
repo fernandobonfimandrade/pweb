@@ -1,0 +1,91 @@
+body {
+	font: 150% Arial, Helvetica, sans-serif;
+}
+/* 150% do tamanho original "pai"  */
+
+
+h1 {
+	font: bold 100% Arial, Helvetica, sans-serif;
+}
+
+#pagina {
+	padding: 5px;
+	width: 960px; /* tamanho mais comum usado */
+	margin: 20px auto;
+}
+
+#cabecalho {
+	height: 180px;
+}
+
+#conteudo {
+	width: 600px;
+	float: left;
+    background: #f8f8f8;
+}
+
+#lateral {
+	width: 300px;
+	float: right;
+    background: #f0efef;
+}
+
+#rodape {
+	clear: both;
+}
+
+#cabecalho, #conteudo, #lateral {
+	margin-bottom: 5px;
+}
+
+	
+#pagina, #cabecalho, #conteudo, #lateral, #rodape {
+	border: solid 1px #ccc;
+}
+
+
+/* Media queries/* 
+
+/*  980px ou menor */
+@media screen and (max-width: 980px) {
+	
+	#pagina {
+		width: 94%;
+	}
+	#conteudo {
+		width: 65%;
+	}
+	#lateral {
+		width: 30%;
+	}
+
+}
+
+/* 700px ou menor  */
+@media screen and (max-width: 700px) {
+
+	#conteudo {
+		width: auto;
+		float: none;
+	}
+	#lateral {
+		width: auto;
+		float: none;
+	}
+
+}
+
+/*  480px or menor  */
+@media screen and (max-width: 480px) {
+
+	#cabecalho {
+		height: auto;
+	}
+	h1 {
+		font-size: 24px;
+	}
+	#lateral { /* nao mostra a lateral */
+		display: none;
+	}
+
+}

@@ -1,0 +1,29 @@
+.tudo {
+width:960px;
+margin: 0 auto;
+    border: 1px solid #000;
+        }
+
+
+p {
+font-size: 1.6em; /*26 pixels/16*/
+line-height: 1.5em; /*24 pixels/16*/
+padding: 2.5em; /*40 pixels/16*/
+text-align: justify;
+}
+
+ 
+.lateral {
+width: 31.25%; /* 300px / 960px */
+float: left;
+border: auto solid red;
+}
+ 
+.principal {
+width: 68.75%; /* 660px / 960px */
+float: right;
+border: auto solid blue;
+}
+
+
+

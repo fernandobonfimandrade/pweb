@@ -1,0 +1,78 @@
+figcaption {
+    bottom: 10px;
+    /* em relacao ao bottom da imagem */
+    margin: 0 5px;
+    padding: 5px;
+    width: 260px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #FFF;
+}
+ul {
+    height: 35px;
+    padding: 0;
+    width: 210px;
+    background-color: #CCC;
+    /*cinza */
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+li {
+    float: left;
+    line-height: 35px;
+    font-size: 12px;
+    width: 50px;
+    text-align: center;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+li:first-child {
+    border-left: none;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+
+.azul {
+    font-weight: bold;
+    height: 50px;
+    line-height: 25px;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-align: center;
+    width: 220px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#202099), to(#AAA900))
+}
+
+/* tipo gradiente, onde começa, onde termina,
+cor inicial, cor final */
+
+.cinza {
+    font-weight: bold;
+    height: 50px;
+    line-height: 25px;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-align: center;
+    width: 220px;
+    background: -webkit-gradient(linear, center top, center bottom, from(#fff), to(#000));
+}
+
+
+/* #fff é branco
+#000 é preto */
+
+.verde {
+    width: 200px;
+    height: 200px;
+    background-color: #FFF;
+    /* cor de inicio e fim */
+    background-image: -webkit-linear-gradient(green, red 30%);
+}
+
+
+/*O padrão é que o gradiente ocupe 100% do elemento, mas muitas vezes queremos fazer apenas um detalhe.
+*/

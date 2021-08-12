@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8"/>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+	<title>Exemplo de Html Semantico e FlexBox</title>
+	<style type="text/css" media="screen">
+	 	* {
+			box-sizing: border-box; 
+		}
+		body {
+		  display: flex;
+		  min-height: 100vh;
+		  flex-direction: column;
+		  margin: 0;
+		}
+		#main {
+		  display: flex;
+		  flex: 1;
+		}
+		#main > article {
+		  flex: 1;
+		}
+		#main > nav, 
+		#main > aside {
+		  flex: 0 0 20vw;
+		  background: #4ABDAC;
+		}
+		#main > nav {
+		  order: -1;
+		  background: #FC4A1A;
+		}
+		footer {
+		  background: #DFDCE3;
+		  height: 20vh;
+            
+		}
+    	header {
+		  background: #F7B733;
+		  height: 20vh;
+         }
+        
+        #F7B7E33
+		header, footer, article, nav, aside {
+		  padding: 1em;
+		}
+	</style>
+</head>
+
+<body>
+  <header>Cabeçalho</header>
+  <div id="main">
+    <article>Conteúdo</article>
+    <nav>Navegação</nav>
+    <aside>Barra Lateral</aside>
+  </div>
+  <footer>Rodapé</footer>
+</body>

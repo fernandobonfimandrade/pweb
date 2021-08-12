@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Criando Formulários 2</title>
+</head>
+
+<body>
+    <form method="post">
+        Nome :
+        <input type="text" name="nome" size="50" maxlength="50" autofocus>
+        <br>
+        <h4> Escolha a marca </h4>
+        <select name="marca">
+            <option value="vw">Volkswagem</option>
+            <option value="Ford">Ford</option>
+            <option value="Renault">Renault</option>
+            <option value="Chevrolet">Fiat</option>
+        </select>
+        <br>
+        <h4> Escolha o modelo </h4>
+        <select name="modelo">
+            <option value="gol">Gol</option>
+            <option value="EcoSport">EcoSport</option>
+            <option value="Duster">Duster</option>
+        </select>
+        <br>
+        <br>
+        <br>
+        <h4> Escolha o combustível</h4>
+        <select name="combustivel">
+             <option value="gasolina"> Gasolina</option>
+             <option value="alcool"> Álcool</option>
+             <option value="diesel"> Diesel</option>
+             <option value="flex"> Flex</option>
+        </select> 
+        <br>
+        <br>
+        <br>
+        <h4> Escolha o Tipo de Pagamento </h4>
+        <input TYPE="RADIO" NAME="Consorcio" VALUE="op1"> Consorcio
+        <input TYPE="RADIO" NAME="Financiamento Banco" VALUE="op2"> Financiamento Banco
+        <input TYPE="RADIO" NAME="Vista" VALUE="op3"> Vista
+
+        <br>
+        <br>
+        <h4> Seguradora </h4>
+        <input TYPE="checkbox" NAME="PortoSeguro" VALUE="op1">Porto Seguro
+        <input TYPE="checkbox" NAME="Itau" VALUE="op2">Itau
+        <input TYPE="checkbox" NAME="HDI" VALUE="op3">HDI
+        <br>
+        <br>
+        <h1>Por favor deixe seu comentário</h1>
+        <textarea name="obs" rows="10" cols="100">
+        </textarea>
+        <br>
+        <br>
+
+        <input TYPE="reset" VALUE="Limpar">
+        <br>
+        <br>
+        <input TYPE="submit" VALUE="Gravar">
+    </form>
+</body>
+
+</html>

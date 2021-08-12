@@ -1,0 +1,88 @@
+
+body {
+  background: #FFF1D6 url(foto1.jpg);
+    background-repeat: no-repeat;
+font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana,
+sans-serif;
+line-height: 1.5;
+/*background-size: cover;
+    background-attachment: scroll;*/
+}
+
+
+.container {
+margin: 0 auto;
+width: 960px;
+}
+
+article {
+background-color: #FFF;
+border: 1px solid #CCC;
+border-color: #CCC #999 #999 #CCC;
+margin-bottom: 20px;
+padding: 10px; /* espaçamento entre a borda e o título */
+}
+
+
+article h2 {
+border-bottom: 1px dashed #7E9F19;
+margin: 0;
+}
+
+article img {
+border: 1px solid #7E9F19;
+float: left;
+margin: 10px 10px 0 0;
+padding: 2px;
+width: 160px;
+height: 160px;
+}
+
+article a { /* mudando a cor dos links para negrito */
+color: #2C88A7;
+font-weight: bold;
+}
+
+header h1 a {
+color: #7E9F35;
+text-decoration: none;
+margin-left:250px;
+}
+
+header h1 a:hover { /* mudando a cor do link quando posicionado */
+background-color: #7E9F19;
+color: #FFF;
+}
+
+.clear { /* para a imagem nao "ficar fora" quando usa o float */
+clear: both;
+}
+
+footer {
+font-size: 12px;
+text-align: center;
+}
+
+section { /* para a barra lateral lista e titulo */
+float: left;
+width: 660px;
+}
+
+aside {
+background-color: #FFFBE4;
+border: 1px solid #C9BC8F;
+padding: 10px;
+float: right;
+width: 260px;
+}
+
+aside h3 {
+font-size: 14px;
+margin-top: 0;
+}
+
+aside ol {
+font-size: 12px;
+}
+
+

@@ -1,0 +1,19 @@
+a {
+	display: block;
+    /* ocupa um bloco */
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	font: bold 13px verdana, arial, tahoma, sans-serif;
+	text-decoration: none;
+	color: black;
+	padding-top: 20PX;
+	border-width: 10px;
+	-webkit-border-image: url(cerejeira.jpg) 10 stretch; /* VALOR QUE DEVE SE ESTENDER */
+}
+
+#teste h1
+{
+    color: red;
+    
+}

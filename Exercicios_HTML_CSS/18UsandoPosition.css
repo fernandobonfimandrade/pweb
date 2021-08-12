@@ -1,0 +1,45 @@
+h4 {
+    margin-left: 200px;
+}
+
+/* em relacao a tela do browser */
+.boxabsolute {
+background-color: green;
+height: 100px;
+width: 100px;
+position: absolute;
+top: 30px;
+left: 15px;
+}
+
+/* em relação ao pai */
+.boxrelative {
+background-color: blueviolet;
+height: 200px;
+width: 200px;
+position: relative;
+top: 50px;
+left: 15px;
+}
+
+
+
+.boxfixed {
+background-color: red;
+height: 50px;
+width: 50px;
+position: fixed;
+top: 30px;
+left: 15px;
+}
+
+
+.boxstatic {
+background-color: pink;
+height: 50px;
+width: 50px;
+position: static;
+top: 30px;
+left: 15px;
+}
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang=”pt-br”>
+
+<head>
+	<meta charset="utf-8">
+	<title>CSS Transition</title>
+	<!-- colocando o css no próprio arquivo do html -->
+	<style>
+		<!-- O resultado esperado é que ao passar o mouse no link a cor do texto seja modificada,
+		mudando do branco para o preto e que a cor de background para vermelho. -->
+        
+        a {
+			color: white;
+			-webkit-transition: 0.5s linear;
+		}
+		
+		a:hover {
+			color: black;
+			background: red;
+			-webkit-transition: 0.5s linear;
+		}
+		
+		ul li ul {
+			display: none;
+		}
+		
+		/* passou mouse lista nao ordenada que está dentro da lista será mostrado em bloco*/
+		ul li:hover ul {
+			display: block;
+		}
+	</style>
+</head>
+
+<body>
+	<a href="#">Olá</a>
+
+
+	<ul>
+		<li><a href="#">Home</a></li>
+		<li><a href="#">Produtos</a>
+			<ul>
+				<li><a href="#">Carros</a></li>
+				<li><a href="#">Motos</a></li>
+				<li><a href="#">Caminhões</a></li>
+				<li><a href="#">Barcos</a></li>
+			</ul>
+		</li>
+		<li><a href="#">Sobre</a></li>
+		<li><a href="#">Contato</a></li>
+	</ul>
+
+</body>
+
+</html>

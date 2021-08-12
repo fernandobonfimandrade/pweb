@@ -1,0 +1,18 @@
+.hint, .error {
+display: none;
+} /* limpa o  hint inicialmente */
+
+
+
+input:focus + .error, textarea:focus + .hint {
+display: inline-block; /* mostra do lado */  
+} /* quando der o foco no input, mostra o hint e dá o foco no
+textarea */
+
+.error {
+color: red;
+display: block;/* mostra abaixo */
+font-size: 0.8em;
+font-style: italic;
+margin: 5px 0 0 90px;
+}

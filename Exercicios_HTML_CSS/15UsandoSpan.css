@@ -1,0 +1,17 @@
+p{
+    font-size: 30px;
+    font-family: "Arial";
+}
+
+.principal {
+	font-weight: bold;
+	color: red;
+    font-size:25px;
+}
+
+.destaque {
+	font-style: italic;	
+        font-weight: bold;
+	font-size: 45px;
+	color: blue;
+}

@@ -1,0 +1,21 @@
+p {
+ -webkit-column-count: 3;
+ -webkit-column-gap: 10px; /* espaço entre uma coluna e outra*/
+ -webkit-column-rule: 1px solid red;
+ -webkit-font-size: 0.9em;
+ -webkit-width: 500px;
+}
+
+img { 
+-webkit-transform: skew(30deg); 
+}
+
+/*
+img {
+    -webkit-transform-origin: 10px 10px;}
+*/
+
+/*img {
+-webkit-transform: scale(1.5) skew(30deg);
+*/
+

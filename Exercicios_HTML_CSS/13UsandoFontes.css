@@ -1,0 +1,49 @@
+h1 {
+    
+    font-family: "Arial", "Helvetica", sans-serif;
+font-size : 50;
+}
+/* vai tentar encontrar as fontes nessa ordem */
+
+
+
+@font-face { /* possibilita utilizar fonts externas */
+font-family: 'IconicFill';
+src: url('iconic_fill.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+}
+
+.icon-next::after {
+content: '\2192'; /* é um simbolo */
+font-family: 'IconicFill';
+margin-left: 10px;
+}
+
+p.icon-next {
+color: blue;
+}
+
+.icon-ok {
+color: #489D00;
+}
+.icon-ok::before {
+content: "\2714";
+font-family: 'IconicFill';
+margin-right: 10px;
+}
+
+.icon-invalid {
+color: #990000;
+}
+
+.icon-invalid::before {
+content: "\2718";
+font-family: 'IconicFill';
+margin-right: 10px;
+}
+
+
+/* Enquanto o Iconic utiliza símbolos Unicode como caracteres para os seus ícones,
+outras fontes podem utilizar outros caracteres para isto. É necessário conferir a
+documentação - caso exista uma - a respeito de cada fonte antes de utilizá-la. */

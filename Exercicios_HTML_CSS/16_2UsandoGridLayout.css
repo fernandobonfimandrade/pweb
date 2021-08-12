@@ -1,0 +1,43 @@
+body {
+    padding: 10px;
+}
+
+.container-box {
+    display: grid;
+/* espaçamento entre as linhas e colunas */
+    grid-gap: 10px;
+    grid-template-columns: auto;
+    grid-template-rows: 50px  100px;
+
+/* disposição na tela observe que a aparece 2x na primeira coluna e f aparece 2x na segunda */
+    grid-template-areas: 'a b c d' 'a e f f';
+}
+
+.box {
+    background-color: #FF8C00;
+    border-radius: 5px;
+}
+
+.a {
+    grid-area: a;
+}
+
+.b {
+    grid-area: b;
+}
+
+.c {
+    grid-area: c;
+}
+
+.d {
+    grid-area: d;
+}
+
+.e {
+    grid-area: e;
+}
+
+.f {
+    grid-area: f;
+}
