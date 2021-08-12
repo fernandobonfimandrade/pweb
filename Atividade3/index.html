@@ -5,6 +5,10 @@
     <title>Atividade 3</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Palette+Mosaic&family=Roboto+Slab:wght@300&display=swap');
+        body{
+            margin: 0;
+            padding: 0;
+        }
         .container{
             font-family: Roboto Slab;
             max-width: 600px;
@@ -237,7 +241,7 @@
             stroke_width: 0,
             stroke_color: "black"
         };
-        $this.bubbles_number = 30;
+        $this.bubbles_number = 50;
         $this.speed = [1500, 8000]; //milliseconds
         $this.max_bubbles_height = $this.height;
         $this.shape = false // 1 : circle | 2 : triangle | 3 : rect | false :random
@@ -268,17 +272,19 @@
 
     background.generate_bubbles = function() {
         var $this = this;
-        var base = $("<div class='shape_background'></div>");
+        var base = $("<div class='shape_background'>Fatec</div>");
         var shape_type = $this.shape ? $this.shape : 3;
         var bgColor = Math.floor($this.rn(0, 2));
         if (shape_type == 1) {
             var bolla = base.css({
+                "color": colors[bgColor],
                 borderRadius: "50%"
             })
         } else if (shape_type == 2) {
             var bolla = base.css({
                 width: 0,
                 height: 0,
+                "color": colors[bgColor],
                 "border-style": "solid",
                 "border-width": "0 40px 69.3px 40px",
                 "border-color": "transparent transparent " + colors[bgColor] + " transparent",
@@ -286,9 +292,7 @@
             });
         } else {
             var bolla = base.css({
-                "border-style": "solid",
-                "border-width": "2px",
-                "border-color": colors[bgColor],
+                "color": colors[bgColor],
                 background: "transparent"
             });
         }
