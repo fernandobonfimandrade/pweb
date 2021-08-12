@@ -2,24 +2,41 @@
 <html>
 
 <head>
+    <title>Atividade 3</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Palette+Mosaic&family=Roboto+Slab:wght@300&display=swap');
+        .container{
+            font-family: Roboto Slab;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .banner{
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        #background_css3{
+            position: fixed;
+        }
+    </style>
 </head>
 
 <body bgcolor="#101019" text="#fff" link="#9023c7" alink="#c723ab">
-    <img src="bg.jpg" alt="background" width="100%">
+<div class="container" >
+    <img class="banner" src="bg.jpg" alt="background" width="100%">
     <h2 ><font color="#c723ab" >Sumário</font></h2>
     <ol start="1">
         <li><a href="#intro">Introdução</a></li>
         <li><a href="#comercioEletronico">Comercio Eletrônico</a></li>
-        <ol start="1">
+        <ol type="A">
             <li><a href="#comercProtecao">Como se proteger no comercio eletrônico</a></li>
         </ol>
         <li><a href="#codigoMalicioso"> Códigos Maliciosos</a></li>
-        <ol start="1">
+        <ol type="A">
             <li><a href="#exemploCodMal">Exemplos de códigos maliciosos</a></li>
             <li><a href="#codMalProtecao">Como evitar códigos maliciosos</a></li>
         </ol>
         <li><a href="#internetBanking">Internet Banking</a></li>
-        <ol start="1">
+        <ol type="A">
             <li><a href="#internetBankingProtecao">Como evitar ataques de phishing do internet Banking</a></li>
         </ol>
         <li><a href="#conclusao">Conclusão</a></li>
@@ -57,7 +74,7 @@
             transação para outros fins</li>
     </ul>
     <p>&nbsp;</p>
-    <h3 id="comercProtecao"><font color="#9023c7" >2.1 Como se proteger no comercio eletrônico</font></h3>
+    <h3 id="comercProtecao"><font color="#9023c7" >2.A Como se proteger no comercio eletrônico</font></h3>
     <ul>
         <li>Utilize sempre um computador seguro;</li>
         <li>com a versão mais recente de todos os programas instalados;</li>
@@ -88,7 +105,7 @@
         informações, apagar arquivos, criptografar dados, conectar-se à Internet, enviar mensagens e ainda instalar
         outros códigos maliciosos. A melhor prevenção contra os códigos maliciosos é impedir que a infecção ocorra pois
         nem sempre é possível reverter as ações danosas já feitas ou recuperar totalmente seus dados.</p>
-    <h3 id="exemploCodMal"><font color="#9023c7" >3.1 Exemplos de códigos maliciosos.</font></h3>
+    <h3 id="exemploCodMal"><font color="#9023c7" >3.A Exemplos de códigos maliciosos.</font></h3>
     <ul>
         <li>VíRUS</li>
         <li>CAVALO DE TROIA (TROJAN)</li>
@@ -105,7 +122,7 @@
         <li>ADWARE</li>
         <li>ROOTKIT</li>
     </ul>
-    <h3 id="codMalProtecao"><font color="#9023c7" >3.2 Como evitar códigos maliciosos.</font></h3>
+    <h3 id="codMalProtecao"><font color="#9023c7" >3.B Como evitar códigos maliciosos.</font></h3>
     <p><strong>Mantenha seus equipamentos atualizados:</strong></p>
     <ul>
         <li>Use apenas programas originais.</li>
@@ -165,7 +182,7 @@
         <li>explorar possíveis vulnerabilidades em equipamentos de rede, como senhas fracas ou padrão</li>
         <li>coletar informações sensíveis que estiverem trafegando na rede sem criptografia.</li>
     </ul>
-    <h3 id="internetBankingProtecao"><font color="#9023c7" >4.1 Como evitar ataques de phishing do internet Banking.</font></h3>
+    <h3 id="internetBankingProtecao"><font color="#9023c7" >4.A Como evitar ataques de phishing do internet Banking.</font></h3>
     <p><strong>Ao acessar o site do banco:</strong></p>
     <ul>
         <li>Certifique-se de usar computadores e dispositivos móveis seguros</li>
@@ -197,6 +214,108 @@
     <p>Cartilha para a segurança na internet. Disponível em: <a href="https://cartilha.cert.br/"
             target="_blank">https://cartilha.cert.br/</a>. Acesso em: 04/08/2021.
     </p>
+</div>
 </body>
+<script src="jquery.js"></script>
+<script src="transaction.js"></script>
+<script>
+    var background = {}
 
+    var colors = ['#fff', '#9023c7', '#c723ab'];
+    background.initializr = function() {
+
+        var $this = this;
+
+
+
+        //option
+        $this.id = "background_css3";
+        $this.style = {
+            bubbles_color: "transparent",
+            stroke_width: 0,
+            stroke_color: "black"
+        };
+        $this.bubbles_number = 30;
+        $this.speed = [1500, 8000]; //milliseconds
+        $this.max_bubbles_height = $this.height;
+        $this.shape = false // 1 : circle | 2 : triangle | 3 : rect | false :random
+
+        if ($("#" + $this.id).lenght > 0) {
+            $("#" + $this.id).remove();
+        }
+        $this.object = $("<div style='z-inde:-1;margin:0;padding:0; overflow:hidden;position:fixed;bottom:0' id='" + $this.id + "'> </div>'").appendTo("body");
+
+        $this.ww = $(window).width()
+        $this.wh = $(window).height()
+        $this.width = $this.object.width($this.ww);
+        $this.height = $this.object.height($this.wh);
+
+
+        $("body").prepend("<style>.shape_background {transform-origin:center; width:80px; height:80px; background: " + $this.style.bubbles_color + "; position: absolute}</style>");
+
+
+        for (i = 0; i < $this.bubbles_number; i++) {
+            $this.generate_bubbles()
+        }
+
+    }
+
+
+
+
+
+    background.generate_bubbles = function() {
+        var $this = this;
+        var base = $("<div class='shape_background'></div>");
+        var shape_type = $this.shape ? $this.shape : 3;
+        var bgColor = Math.floor($this.rn(0, 2));
+        if (shape_type == 1) {
+            var bolla = base.css({
+                borderRadius: "50%"
+            })
+        } else if (shape_type == 2) {
+            var bolla = base.css({
+                width: 0,
+                height: 0,
+                "border-style": "solid",
+                "border-width": "0 40px 69.3px 40px",
+                "border-color": "transparent transparent " + colors[bgColor] + " transparent",
+                background: "transparent"
+            });
+        } else {
+            var bolla = base.css({
+                "border-style": "solid",
+                "border-width": "2px",
+                "border-color": colors[bgColor],
+                background: "transparent"
+            });
+        }
+        var rn_size = $this.rn(.8, 1.2);
+        bolla.css({
+            "transform": "scale(" + rn_size + ") rotate(" + $this.rn(-360, 360) + "deg)",
+            top: $this.wh + 100,
+            left: $this.rn(-60, $this.ww + 60)
+        });
+        bolla.appendTo($this.object);
+        bolla.transit({
+            top: $this.rn($this.wh / 4, $this.wh / 4 - 60),
+            "transform": "scale(" + rn_size + ") rotate(" + $this.rn(-360, 360) + "deg)",
+            opacity: 0
+        }, $this.rn($this.speed[0], $this.speed[1]), function() {
+            $(this).remove();
+            $this.generate_bubbles();
+        })
+
+    }
+
+
+    background.rn = function(from, to, arr) {
+        if (arr) {
+            return Math.random() * (to - from + 1) + from;
+        } else {
+            return Math.floor(Math.random() * (to - from + 1) + from);
+        }
+    }
+    background.initializr()
+</script>
 </html>
