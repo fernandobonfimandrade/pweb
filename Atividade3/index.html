@@ -273,29 +273,13 @@
     background.generate_bubbles = function() {
         var $this = this;
         var base = $("<div class='shape_background'>Fatec</div>");
-        var shape_type = $this.shape ? $this.shape : 3;
         var bgColor = Math.floor($this.rn(0, 2));
-        if (shape_type == 1) {
-            var bolla = base.css({
-                "color": colors[bgColor],
-                borderRadius: "50%"
-            })
-        } else if (shape_type == 2) {
-            var bolla = base.css({
-                width: 0,
-                height: 0,
-                "color": colors[bgColor],
-                "border-style": "solid",
-                "border-width": "0 40px 69.3px 40px",
-                "border-color": "transparent transparent " + colors[bgColor] + " transparent",
-                background: "transparent"
-            });
-        } else {
+ 
             var bolla = base.css({
                 "color": colors[bgColor],
                 background: "transparent"
             });
-        }
+
         var rn_size = $this.rn(.8, 1.2);
         bolla.css({
             "transform": "scale(" + rn_size + ") rotate(" + $this.rn(-360, 360) + "deg)",
