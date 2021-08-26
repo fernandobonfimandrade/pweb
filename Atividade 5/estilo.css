@@ -1,0 +1,75 @@
+:root {
+    --margin: 10px;
+}
+
+/* variavel fica
+no elemento raiz */
+html, body{
+    background-color: #fff;
+}
+
+footer{
+    text-align: center;
+}
+
+header{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+nav{
+    background-color: #333;
+}
+nav ul {
+    max-width: 1000px;
+    margin: 0 auto;
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+}
+nav ul li {
+    float: left;
+}
+nav ul li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+nav ul li:hover {
+    background-color: #04AA6D;
+}
+
+main{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.container-box {
+    display: flex; 
+}
+.columns {
+    display: flex;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.main-column, .nested-column{
+    flex: 2;
+}
+
+article{
+    flex-direction: column;
+    margin: 10px;
+    background-color: #e8e8e8;
+}
+article p, article footer, article h2{
+    padding: 10px;
+}
+article footer{
+    display: flex;
+    justify-content: space-between;
+}
