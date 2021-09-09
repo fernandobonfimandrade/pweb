@@ -16,6 +16,7 @@ body, html{
     background-color: #000915;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
 }
 .fRight{
   float: right;
@@ -143,10 +144,19 @@ p{
 
 
   /* ANIMAÇÔES */
-
-  body.animated{
+  .backgroundLigthing{
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000915;
+    position: absolute;
+    opacity: .5;
+  }
+  .backgroundLigthing.animated{
     animation: animatedBackgroundLigthing .2s linear infinite;
 }
+
 
 .motherShip.animated{
   animation: animatedMotherBoardLigthing .2s linear infinite;
@@ -425,7 +435,7 @@ p{
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 1;
 }
   
 
@@ -447,9 +457,6 @@ p{
     top: 50vh;
     left: -200px;
     position:absolute;
-    /* transform: rotate(15deg); */
-    -webkit-filter: drop-shadow(-2px 2px 3px rgba(90, 175, 255, 0.597));
-    filter: drop-shadow(-2px 2px 3px rgba(90, 175, 255, 0.597));
 }
 .carro2,.bus,.carro3,.police{
     position:absolute;
@@ -458,11 +465,29 @@ p{
 }
 
 .motherShip{
-  position:absolute;
-  top: 0;
-  left: 100px;
   filter: brightness(0.3);
+  max-width: CALC(100vw - 30px);
 }
+.motherShipContainer{
+  position:absolute;
+  top: -10px;
+  left: 30px;
+  animation: planeShip 3s linear infinite;
+}
+
+@keyframes planeShip{
+  0%{
+    transform: translateY(0px);
+  }
+  50%{
+    transform: translateY(-5px) translateZ(15px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
+}
+
+
 .carro1,.carro2,.carro3,.police{
     transform: rotate(10deg);
 }
@@ -485,6 +510,7 @@ p{
     animation: giroflexRed .5s linear infinite;
 }
 
+
 @keyframes giroflexRed{
   from{
     background-color: red;
@@ -500,4 +526,78 @@ p{
   to{
     background-color: red;
   }
+}
+
+
+
+
+
+@keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+  from {background-position:0 0;}
+  to {background-position:-10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+  from {background-position:0 0;}
+  to {background-position:10000px 0;}
+}
+@-webkit-keyframes move-clouds-back {
+  from {background-position:0 0;}
+  to {background-position:10000px 0;}
+}
+@-moz-keyframes move-clouds-back {
+  from {background-position:0 0;}
+  to {background-position:10000px 0;}
+}
+@-ms-keyframes move-clouds-back {
+  from {background-position: 0;}
+  to {background-position:10000px 0;}
+}
+
+.stars, .twinkling, .clouds {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+.stars {
+  background:#000 url(../images/stars.png) repeat top center;
+  z-index:0;
+}
+
+.twinkling{
+  background:transparent url(../images/twinkling.png) repeat top center;
+  z-index:0;
+  -moz-animation:move-twink-back 200s linear infinite;
+  -ms-animation:move-twink-back 200s linear infinite;
+  -o-animation:move-twink-back 200s linear infinite;
+  -webkit-animation:move-twink-back 200s linear infinite;
+  animation:move-twink-back 200s linear infinite;
+}
+
+.clouds{
+  background:transparent url(../images/clouds3.png) repeat top center;
+  z-index:1;
+  -moz-animation:move-clouds-back 200s linear infinite;
+  -ms-animation:move-clouds-back 200s linear infinite;
+  -o-animation:move-clouds-back 200s linear infinite;
+  -webkit-animation:move-clouds-back 200s linear infinite;
+  animation:move-clouds-back 200s linear infinite;
 }

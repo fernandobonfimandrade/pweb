@@ -131,12 +131,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }, 7000);
 
   setInterval(() => {
-    const body = document.body;
+    const backgroundLigthing = document.getElementsByClassName('backgroundLigthing')[0];
     const motherShip = document.getElementsByClassName('motherShip');
-    addClass(body,'animated');
+    addClass(backgroundLigthing,'animated');
     addClass(motherShip[0],'animated');
     setTimeout(() => {
-      removeClass(body,'animated');
+      removeClass(backgroundLigthing,'animated');
       removeClass(motherShip[0],'animated');
     }, getRandomIntInclusive(700, 1000));
   }, 3500);
