@@ -24,7 +24,7 @@ body, html{
 .hologram{
     position: fixed;
     top: 2.5vh;
-    max-height: 93%;
+    max-height: 95vh;
     overflow: auto;
     background-color: rgba(255, 255, 255, 0.111);
     left: 50%;
@@ -65,7 +65,7 @@ body, html{
     opacity: .7;
     position: fixed;
     top: 2.5vh;
-    max-height: 93%;
+    max-height: 95vh;
     overflow: hidden;
     left: 50%;
     transform: translateX(-50%);
@@ -131,9 +131,8 @@ p{
 
 
   footer{
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    position: fixed;
+    bottom: 0px;
     font-size: 13px;
     font-weight: var(--bold);
     border-bottom: dashed 1px #7008ac;
@@ -141,7 +140,7 @@ p{
     z-index: 4;  
     display: flex;
     justify-content: space-between;
-    width: 100vw; 
+    width: CALC(100% - 3px);
   }
 
 
