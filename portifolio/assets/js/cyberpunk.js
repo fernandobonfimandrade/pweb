@@ -16,23 +16,23 @@ function removeClass(ele,cls) {
   }
 }
 
-function drawLines(){
-  const lines = document.getElementsByClassName('line');
-  if(lines.length) {
-    for (let i = 0; i < lines.length; i++) {
-      document.getElementById('grain').removeChild(lines[i]);
-    }
-  }
+// function drawLines(){
+//   const lines = document.getElementsByClassName('line');
+//   if(lines.length) {
+//     for (let i = 0; i < lines.length; i++) {
+//       document.getElementById('grain').removeChild(lines[i]);
+//     }
+//   }
   
-  for(i = 0; i < document.getElementById('hologram').offsetHeight/10; i++){
-    const line = document.createElement("div");  
-    line.className = `line line-${i}`;
-    line.style.top = `${i * 10}px`;
-    const time = Math.random() * 5;
-    line.style.animation = `lines ${time}s infinite`;
-    document.getElementById('grain').appendChild(line) ;
-  }
-}
+//   for(i = 0; i < document.getElementById('hologram').offsetHeight/10; i++){
+//     const line = document.createElement("div");  
+//     line.className = `line line-${i}`;
+//     line.style.top = `${i * 10}px`;
+//     const time = Math.random() * 5;
+//     line.style.animation = `lines ${time}s infinite`;
+//     document.getElementById('grain').appendChild(line) ;
+//   }
+// }
 
 
 document.body.addEventListener("click", function(event) { 
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.getElementById('grain').style.height = heigth+'px';
   document.getElementById('borderCorner').style.width = width+'px';
   document.getElementById('borderCorner').style.height = heigth+'px';
-  drawLines();
+  // drawLines();
   
 
   setInterval(() => {
@@ -173,3 +173,29 @@ window.onresize = function(event) {
   document.getElementById('borderCorner').style.height = heigth+'px';
   drawLines();
 };
+
+
+window.countFPS = (function () {
+  var lastLoop = (new Date()).getMilliseconds();
+  var count = 1;
+  var fps = 0;
+  return function () {
+    var currentLoop = (new Date()).getMilliseconds();
+    if (lastLoop > currentLoop) {
+      fps = count;
+      count = 1;
+    } else {
+      count += 1;
+    }
+    lastLoop = currentLoop;
+    return fps;
+  };
+}());
+
+var $out = $('#out');
+(function loop() {
+    requestAnimationFrame(function () {
+      $out.html(countFPS());
+      loop();
+    });
+}());
