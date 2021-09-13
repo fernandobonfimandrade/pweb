@@ -133,6 +133,7 @@ p{
   footer{
     position: fixed;
     bottom: 0px;
+    left: 0px;
     font-size: 13px;
     font-weight: var(--bold);
     border-bottom: dashed 1px #7008ac;
