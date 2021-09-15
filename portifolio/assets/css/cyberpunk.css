@@ -152,6 +152,10 @@ p{
     width: 100vw;
     height: 100vh;
     background-color: #000915;
+    background-image: url(../images/bgcity.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     position: absolute;
     opacity: .5;
   }
@@ -552,20 +556,20 @@ p{
 }
 
 @keyframes move-clouds-back {
-  from {background-position:0 0;}
-  to {background-position:10000px 0;}
+  from {background-position-x:0;}
+  to {background-position-x:10000px;}
 }
 @-webkit-keyframes move-clouds-back {
-  from {background-position:0 0;}
-  to {background-position:10000px 0;}
+  from {background-position-x:0;}
+  to {background-position-x:10000px;}
 }
 @-moz-keyframes move-clouds-back {
-  from {background-position:0 0;}
-  to {background-position:10000px 0;}
+  from {background-position-x:0;}
+  to {background-position-x:10000px;}
 }
 @-ms-keyframes move-clouds-back {
-  from {background-position: 0;}
-  to {background-position:10000px 0;}
+  from {background-position-x: 0;}
+  to {background-position-x:10000px;}
 }
 
 .stars, .twinkling, .clouds {
@@ -596,10 +600,70 @@ p{
 
 .clouds{
   background:transparent url(../images/clouds3.png) repeat top center;
+  background-position-y: -250px;
   z-index:1;
   -moz-animation:move-clouds-back 200s linear infinite;
   -ms-animation:move-clouds-back 200s linear infinite;
   -o-animation:move-clouds-back 200s linear infinite;
   -webkit-animation:move-clouds-back 200s linear infinite;
   animation:move-clouds-back 200s linear infinite;
+}
+
+
+.moviment::before{
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 1px solid transparent;
+  border-bottom: 16px solid transparent;
+  border-right: 67px solid #eeca00;
+  left: 68px;
+  top: 19px;
+  opacity: 0.1;
+}
+
+.moviment::after{
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 1px solid transparent;
+  border-bottom: 16px solid transparent;
+  border-right: 67px solid #eeca00;
+  left: 63px;
+  top: 24px;
+  opacity: 0.1;
+}
+
+.movimentRow::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 1px solid transparent;
+  border-bottom: 16px solid transparent;
+  border-right: 67px solid #eeca00;
+  left: 101px;
+  top: 29px;
+  opacity: 0.3;
+}
+.movimentRow::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 1px solid transparent;
+  border-bottom: 16px solid transparent;
+  border-right: 67px solid #eeca00;
+  left: 105px;
+  top: 24px;
+  opacity: 0.3;
+}
+
+.pixelMoviment {
+  width: 2px;
+  height: 2px;
+  background-color: #fff;
+  position: absolute;
 }

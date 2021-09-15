@@ -160,6 +160,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
       movimentarCarroX(movimentsLine[index2],index2+1);   
     }, 2000*index2);
   }
+  const pixelMoviment = document.getElementsByClassName('pixelMoviment');
+  for (let index2 = 0; index2 < pixelMoviment.length; index2++) {
+    setTimeout(() => {
+      pixelMoviment[index2].style.left = '0px';
+      const start = getRandomIntInclusive(400, 450);
+      pixelMoviment[index2].style.top = start+'px';
+      movimentarCarroX(pixelMoviment[index2],.2);   
+    }, 4000*index2);
+  }
 
 });
 
