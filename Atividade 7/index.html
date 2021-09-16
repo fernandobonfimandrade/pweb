@@ -65,7 +65,7 @@
         <div class="oponente">
             <img src="./img/bot.png" alt="oponente" id="oponenteIMG" >
             <br>
-            <span id="resultado">JOKENPO</span>
+            <span id="resultado">JOKENPÔ</span>
         </div>
         <nav>
             <ul>
@@ -79,7 +79,7 @@
     <script>
 
         var imgs = ["./img/pedra.png","./img/papel.png","./img/tesoura.png"]
-        var palavra = ["JO","KEN","PO"]
+        var palavra = ["JO","KEN","PÔ"]
 
 
         function venceu(){
@@ -110,7 +110,7 @@
 
         function userEscolhe(usuario){
             const resultado = document.getElementById('resultado');
-            resultado.innerHTML= 'JOKENPO';
+            resultado.innerHTML= 'JOKENPÔ';
             var i = 0;
             var intervalor = setInterval(() => {
                 oponente = i++;
