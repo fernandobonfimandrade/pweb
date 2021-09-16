@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,10 +15,12 @@
             padding: 0;
             overflow: hidden;
         }
-        nav ul{
+
+        nav ul {
             display: flex;
         }
-        nav ul li{
+
+        nav ul li {
             float: left;
             list-style: none;
             padding: 5px;
@@ -31,10 +34,12 @@
             border-radius: 15px;
             margin: 2px;
         }
-        nav ul li:hover{
+
+        nav ul li:hover {
             background-color: aquamarine;
         }
-        .oponente{
+
+        .oponente {
             width: 100%;
             max-width: 600px;
             height: 300px;
@@ -51,99 +56,97 @@
             align-items: center;
             flex-direction: column;
         }
-        #resultado{
+
+        #resultado {
             font-size: 25px;
             font-weight: bold;
             text-transform: uppercase;
         }
-
-
     </style>
 </head>
+
 <body>
     <section>
         <div class="oponente">
-            <img src="./img/bot.png" alt="oponente" id="oponenteIMG" >
+            <img src="./img/bot.png" alt="oponente" id="oponenteIMG">
             <br>
             <span id="resultado">JOKENPÔ</span>
         </div>
         <nav>
             <ul>
-                <li><img src="./img/pedra.png" alt="pedra" onclick="userEscolhe(0)" ></li>
-                <li><img src="./img/papel.png" alt="papel"  onclick="userEscolhe(1)" ></li>
-                <li><img src="./img/tesoura.png" alt="tesoura"  onclick="userEscolhe(2)" ></li>
+                <li><img src="./img/pedra.png" alt="pedra" onclick="userEscolhe(0)"></li>
+                <li><img src="./img/papel.png" alt="papel" onclick="userEscolhe(1)"></li>
+                <li><img src="./img/tesoura.png" alt="tesoura" onclick="userEscolhe(2)"></li>
             </ul>
         </nav>
 
     </section>
     <script>
 
-        var imgs = ["./img/pedra.png","./img/papel.png","./img/tesoura.png"]
-        var palavra = ["JO","KEN","PÔ"]
+        var imgs = ["./img/pedra.png", "./img/papel.png", "./img/tesoura.png"]
+        var palavra = ["JO", "KEN", "PÔ"]
 
+        function resultado(result,oponente) {
+            let resultadoTXT = '';
+            switch (result) {
+                case 0:
+                    resultadoTXT = 'empatou';
+                    break;
+                case 1:
+                    resultadoTXT = 'ganhou';
+                    break;
+                case 2:
+                    resultadoTXT = 'perdeu';
+                    break;
+            }
+            document.getElementById('resultado').innerHTML = '...';
+            setTimeout(() => {
+                document.getElementById('oponenteIMG').src = imgs[oponente];
+                document.getElementById('resultado').innerHTML = resultadoTXT;
+            }, 1000);
+        }
 
-        function venceu(){
-            const resultado = document.getElementById('resultado');
-            resultado.innerHTML= 'venceu';
-        } 
-        function perdeu(){
-            const resultado = document.getElementById('resultado');
-            resultado.innerHTML= 'perdeu';
-        } 
-        function empate(){
-            const resultado = document.getElementById('resultado');
-            resultado.innerHTML= 'empatou';
-        } 
-
-        var jokenpo = { 
-            0 : (oponente) => {
-                    return oponente === 2 ? true : false;
+        var jokenpo = {
+            0: (oponente) => {
+                return oponente === 2 ? true : false;
             },
-            1 : (oponente) => {
-                    return oponente === 0 ? true : false;
+            1: (oponente) => {
+                return oponente === 0 ? true : false;
             },
-            2 :(oponente) => {
-                    return oponente === 1 ? true : false;
+            2: (oponente) => {
+                return oponente === 1 ? true : false;
             }
         }
 
-
-        function userEscolhe(usuario){
-            const resultado = document.getElementById('resultado');
-            resultado.innerHTML= 'JOKENPÔ';
+        function userEscolhe(usuario) {
+            document.getElementById('resultado').innerHTML = 'JOKENPÔ';
             var i = 0;
             var intervalor = setInterval(() => {
                 oponente = i++;
-                if(i == 3){
+                if (i == 3) {
                     i = 0;
                 }
-                const oponenteIMGAux = document.getElementById('oponenteIMG');
-                oponenteIMGAux.src=imgs[oponente];
-                const resultado = document.getElementById('resultado');
-                resultado.innerHTML= palavra[oponente];
+                document.getElementById('oponenteIMG').src = imgs[oponente];
+                document.getElementById('resultado').innerHTML = palavra[oponente];
             }, 500);
 
             setTimeout(() => {
                 clearInterval(intervalor);
                 const oponente = Math.floor(Math.random() * 3);
-            
-                const oponenteIMG = document.getElementById('oponenteIMG');
-                oponenteIMG.src=imgs[oponente];
-                if (Number(usuario) == Number(oponente)){
-                    empate();
-                }else{
-                    if(jokenpo[usuario](oponente)){
-                        venceu();
-                    }else{
-                        perdeu();
+
+                document.getElementById('oponenteIMG').src = "./img/bot.png";
+                if (Number(usuario) == Number(oponente)) {
+                    resultado(0,oponente);
+                } else {
+                    if (jokenpo[usuario](oponente)) {
+                        resultado(1,oponente);
+                    } else {
+                        resultado(2,oponente);
                     }
                 }
             }, 3500);
-
-           
         }
-
-
     </script>
 </body>
+
 </html>
