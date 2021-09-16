@@ -61,6 +61,11 @@
 </head>
 <body>
     <section>
+        <div class="oponente">
+            <img src="./img/bot.png" alt="oponente" id="oponenteIMG" >
+            <br>
+            <span id="resultado">JOKENPO</span>
+        </div>
         <nav>
             <ul>
                 <li><img src="./img/pedra.png" alt="pedra" onclick="userEscolhe(0)" ></li>
@@ -68,11 +73,7 @@
                 <li><img src="./img/tesoura.png" alt="tesoura"  onclick="userEscolhe(2)" ></li>
             </ul>
         </nav>
-        <div class="oponente">
-            <img src="./img/bot.png" alt="oponente" id="oponenteIMG" >
-            <br>
-            <span id="resultado">JOKENPO</span>
-        </div>
+
     </section>
     <script>
 
@@ -136,7 +137,7 @@
                         perdeu();
                     }
                 }
-            }, 3000);
+            }, 3500);
 
            
         }
