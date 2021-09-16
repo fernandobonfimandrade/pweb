@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jokenpô</title>
     <style>
+        html {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bold;
+        }
+
         nav ul {
             width: 100%;
             max-width: 600px;
@@ -55,6 +60,7 @@
             align-items: center;
             align-items: center;
             flex-direction: column;
+            position: relative;
         }
 
         #resultado {
@@ -62,47 +68,122 @@
             font-weight: bold;
             text-transform: uppercase;
         }
+
+        .pontuacao {
+            display: flex;
+            flex-direction: row;
+            padding-left: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .moedas {
+            display: flex;
+            flex-direction: row;
+            padding-right: 10px;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .pontuacao img,.moedas img {
+            width: 20px;
+        }
+
+        .pontuacao .label,.moedas .label{
+            background: #fff;
+            border: solid 2px rgb(181, 181, 181);
+            margin: 5px;
+            padding: 3px;
+            border-radius: 30px;
+            width: 60px;
+            display: flex;
+            justify-content: space-around;
+            align-content: center;
+            align-items: center;
+        }
+
+        .resultadoLabel{
+            background: #fff;
+            border: solid 2px rgb(0, 0, 0);
+            margin: 5px;
+            padding: 3px 10px;
+            border-radius: 30px;
+        }
+        .empate{
+            background: rgb(0, 0, 0);
+            color: #fff;
+        }
+        .ganhou{
+            background: rgb(9, 170, 0);
+            color: #fff;
+        }
+        .perdeu{
+            background: rgb(214, 0, 0);
+            color: #fff;
+        }
     </style>
 </head>
 
 <body>
     <section>
         <div class="oponente">
+            <div class="pontuacao">
+                <div class="label"><img src="./img/star.png"><span id="vitorias" >0</span></div>
+                <div class="label"><img src="./img/defeat.png"><span id="derrotas" >0</span></div>
+            </div>
+            <div class="moedas">
+                <div class="label"><img src="./img/coins.png"><span id="moedas" >20</span></div>
+            </div>
             <img src="./img/bot.png" alt="oponente" id="oponenteIMG">
             <br>
             <span id="resultado">JOKENPÔ</span>
         </div>
         <nav>
             <ul>
-                <li><img src="./img/pedra.png" alt="pedra" onclick="userEscolhe(0)"></li>
-                <li><img src="./img/papel.png" alt="papel" onclick="userEscolhe(1)"></li>
-                <li><img src="./img/tesoura.png" alt="tesoura" onclick="userEscolhe(2)"></li>
+                <li onclick="userEscolhe(0)" ><img src="./img/pedra.png" alt="pedra" ></li>
+                <li onclick="userEscolhe(1)" ><img src="./img/papel.png" alt="papel" ></li>
+                <li onclick="userEscolhe(2)" ><img src="./img/tesoura.png" alt="tesoura" ></li>
             </ul>
         </nav>
 
     </section>
     <script>
 
-        var imgs = ["./img/pedra.png", "./img/papel.png", "./img/tesoura.png"]
-        var palavra = ["JO", "KEN", "PÔ"]
+        var vitorias = 0;
+        var derrotas = 0;
+        var moedas = 20;
+        var ingame = 0;
 
-        function resultado(result,oponente) {
+        var imgs = ["./img/pedra.png", "./img/papel.png", "./img/tesoura.png"]
+        var palavra = ["JO", "-KEN", "-PÔ"]
+
+        function semMoedas(){
+            alert('Você está sem moedas!');
+        }
+
+        function resultado(result, oponente) {
             let resultadoTXT = '';
             switch (result) {
                 case 0:
-                    resultadoTXT = 'empatou';
+                    resultadoTXT = '<span class="resultadoLabel empate" >empatou</span>';
                     break;
                 case 1:
-                    resultadoTXT = 'ganhou';
+                    vitorias++;
+                    resultadoTXT = '<span class="resultadoLabel ganhou" >ganhou</span>';
                     break;
                 case 2:
-                    resultadoTXT = 'perdeu';
+                    derrotas++;
+                    resultadoTXT = '<span class="resultadoLabel perdeu" >perdeu</span>';
                     break;
             }
             document.getElementById('resultado').innerHTML = '...';
             setTimeout(() => {
                 document.getElementById('oponenteIMG').src = imgs[oponente];
                 document.getElementById('resultado').innerHTML = resultadoTXT;
+                document.getElementById('vitorias').innerHTML = vitorias;
+                document.getElementById('derrotas').innerHTML = derrotas;
+                ingame = 0;
             }, 1000);
         }
 
@@ -119,33 +200,44 @@
         }
 
         function userEscolhe(usuario) {
-            document.getElementById('oponenteIMG').src = "./img/bot.png";
-            document.getElementById('resultado').innerHTML = 'JOKENPÔ';
-            var i = 0;
-            var intervalor = setInterval(() => {
-                oponente = i++;
-                if (i == 3) {
-                    i = 0;
-                }
-                document.getElementById('oponenteIMG').src = imgs[oponente];
-                document.getElementById('resultado').innerHTML = palavra[oponente];
-            }, 500);
-
-            setTimeout(() => {
-                clearInterval(intervalor);
-                const oponente = Math.floor(Math.random() * 3);
-
+            if(moedas == 0){
+                return semMoedas();
+            }
+            if(ingame == 0){
+                moedas--;
+                document.getElementById('moedas').innerHTML = moedas;
+                ingame = 1;
                 document.getElementById('oponenteIMG').src = "./img/bot.png";
-                if (Number(usuario) == Number(oponente)) {
-                    resultado(0,oponente);
-                } else {
-                    if (jokenpo[usuario](oponente)) {
-                        resultado(1,oponente);
-                    } else {
-                        resultado(2,oponente);
+                document.getElementById('resultado').innerHTML = 'START';
+                var i = 0;
+                var intervalor = setInterval(() => {
+                    if(i == 0){
+                        document.getElementById('resultado').innerHTML = '';
                     }
-                }
-            }, 3500);
+                    oponente = i++;
+                    document.getElementById('oponenteIMG').src = imgs[oponente];
+                    document.getElementById('resultado').innerHTML += palavra[oponente];
+                    if (i == 3) {
+                        i = 0;
+                    }
+                }, 500);
+    
+                setTimeout(() => {
+                    clearInterval(intervalor);
+                    const oponente = Math.floor(Math.random() * 3);
+    
+                    document.getElementById('oponenteIMG').src = "./img/bot.png";
+                    if (Number(usuario) == Number(oponente)) {
+                        resultado(0, oponente);
+                    } else {
+                        if (jokenpo[usuario](oponente)) {
+                            resultado(1, oponente);
+                        } else {
+                            resultado(2, oponente);
+                        }
+                    }
+                }, 3500);
+            }
         }
     </script>
 </body>
