@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokenpo</title>
+    <style>
+        nav ul {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            list-style-type: none;
+            padding: 0;
+            overflow: hidden;
+        }
+        nav ul{
+            display: flex;
+        }
+        nav ul li{
+            float: left;
+            list-style: none;
+            padding: 5px;
+            background-color: aqua;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            justify-content: center;
+            border: black solid 2px;
+            border-radius: 15px;
+            margin: 2px;
+        }
+        nav ul li:hover{
+            background-color: aquamarine;
+        }
+        .oponente{
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            margin: 0 auto;
+            border: black solid 2px;
+            border-radius: 15px;
+            background-color: aqua;
+            margin-top: 5px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #resultado{
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+<body>
+    <section>
+        <nav>
+            <ul>
+                <li><img src="./img/pedra.png" alt="pedra" onclick="userEscolhe(0)" ></li>
+                <li><img src="./img/papel.png" alt="papel"  onclick="userEscolhe(1)" ></li>
+                <li><img src="./img/tesoura.png" alt="tesoura"  onclick="userEscolhe(2)" ></li>
+            </ul>
+        </nav>
+        <div class="oponente">
+            <img src="./img/bot.png" alt="oponente" id="oponenteIMG" >
+            <br>
+            <span id="resultado">JOKENPO</span>
+        </div>
+    </section>
+    <script>
+
+        var imgs = ["./img/pedra.png","./img/papel.png","./img/tesoura.png"]
+        var palavra = ["JO","KEN","PO"]
+
+
+        function venceu(){
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML= 'venceu';
+        } 
+        function perdeu(){
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML= 'perdeu';
+        } 
+        function empate(){
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML= 'empatou';
+        } 
+
+        var jokenpo = { 
+            0 : (oponente) => {
+                    return oponente === 2 ? true : false;
+            },
+            1 : (oponente) => {
+                    return oponente === 0 ? true : false;
+            },
+            2 :(oponente) => {
+                    return oponente === 1 ? true : false;
+            }
+        }
+
+
+        function userEscolhe(usuario){
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML= 'JOKENPO';
+            var i = 0;
+            var intervalor = setInterval(() => {
+                oponente = i++;
+                if(i == 3){
+                    i = 0;
+                }
+                const oponenteIMGAux = document.getElementById('oponenteIMG');
+                oponenteIMGAux.src=imgs[oponente];
+                const resultado = document.getElementById('resultado');
+                resultado.innerHTML= palavra[oponente];
+            }, 500);
+
+            setTimeout(() => {
+                clearInterval(intervalor);
+                const oponente = Math.floor(Math.random() * 3);
+            
+                const oponenteIMG = document.getElementById('oponenteIMG');
+                oponenteIMG.src=imgs[oponente];
+                if (Number(usuario) == Number(oponente)){
+                    empate();
+                }else{
+                    if(jokenpo[usuario](oponente)){
+                        venceu();
+                    }else{
+                        perdeu();
+                    }
+                }
+            }, 3000);
+
+           
+        }
+
+
+    </script>
+</body>
+</html>
