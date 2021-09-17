@@ -78,6 +78,7 @@
             top: 0;
             left: 0;
         }
+
         .moedas {
             display: flex;
             flex-direction: row;
@@ -87,11 +88,13 @@
             right: 0;
         }
 
-        .pontuacao img,.moedas img {
+        .pontuacao img,
+        .moedas img {
             width: 20px;
         }
 
-        .pontuacao .label,.moedas .label{
+        .pontuacao .label,
+        .moedas .label {
             background: #fff;
             border: solid 2px rgb(181, 181, 181);
             margin: 5px;
@@ -104,22 +107,25 @@
             align-items: center;
         }
 
-        .resultadoLabel{
+        .resultadoLabel {
             background: #fff;
             border: solid 2px rgb(0, 0, 0);
             margin: 5px;
             padding: 3px 10px;
             border-radius: 30px;
         }
-        .empate{
+
+        .empate {
             background: rgb(0, 0, 0);
             color: #fff;
         }
-        .ganhou{
+
+        .ganhou {
             background: rgb(9, 170, 0);
             color: #fff;
         }
-        .perdeu{
+
+        .perdeu {
             background: rgb(214, 0, 0);
             color: #fff;
         }
@@ -130,11 +136,11 @@
     <section>
         <div class="oponente">
             <div class="pontuacao">
-                <div class="label"><img src="./img/star.png"><span id="vitorias" >0</span></div>
-                <div class="label"><img src="./img/defeat.png"><span id="derrotas" >0</span></div>
+                <div class="label"><img src="./img/star.png"><span id="vitorias">0</span></div>
+                <div class="label"><img src="./img/defeat.png"><span id="derrotas">0</span></div>
             </div>
             <div class="moedas">
-                <div class="label"><img src="./img/coins.png"><span id="moedas" >20</span></div>
+                <div class="label"><img src="./img/coins.png"><span id="moedas">20</span></div>
             </div>
             <img src="./img/bot.png" alt="oponente" id="oponenteIMG">
             <br>
@@ -142,9 +148,9 @@
         </div>
         <nav>
             <ul>
-                <li onclick="userEscolhe(0)" ><img src="./img/pedra.png" alt="pedra" ></li>
-                <li onclick="userEscolhe(1)" ><img src="./img/papel.png" alt="papel" ></li>
-                <li onclick="userEscolhe(2)" ><img src="./img/tesoura.png" alt="tesoura" ></li>
+                <li onclick="userEscolhe(0)"><img src="./img/pedra.png" alt="pedra"></li>
+                <li onclick="userEscolhe(1)"><img src="./img/papel.png" alt="papel"></li>
+                <li onclick="userEscolhe(2)"><img src="./img/tesoura.png" alt="tesoura"></li>
             </ul>
         </nav>
 
@@ -159,7 +165,7 @@
         var imgs = ["./img/pedra.png", "./img/papel.png", "./img/tesoura.png"]
         var palavra = ["JO", "-KEN", "-PÔ"]
 
-        function semMoedas(){
+        function semMoedas() {
             alert('Você está sem moedas!');
         }
 
@@ -201,10 +207,10 @@
         }
 
         function userEscolhe(usuario) {
-            if(moedas == 0){
+            if (moedas == 0) {
                 return semMoedas();
             }
-            if(ingame == 0){
+            if (ingame == 0) {
                 moedas--;
                 document.getElementById('moedas').innerHTML = moedas;
                 ingame = 1;
@@ -212,7 +218,7 @@
                 document.getElementById('resultado').innerHTML = 'START';
                 var i = 0;
                 var intervalor = setInterval(() => {
-                    if(i == 0){
+                    if (i == 0) {
                         document.getElementById('resultado').innerHTML = '';
                     }
                     oponente = i++;
@@ -222,11 +228,11 @@
                         i = 0;
                     }
                 }, 500);
-    
+
                 setTimeout(() => {
                     clearInterval(intervalor);
                     const oponente = Math.floor(Math.random() * 3);
-    
+
                     document.getElementById('oponenteIMG').src = "./img/bot.png";
                     if (Number(usuario) == Number(oponente)) {
                         resultado(0, oponente);
@@ -239,6 +245,19 @@
                     }
                 }, 3500);
             }
+        }
+
+
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('./sw.js')
+                .then(serviceWorker => {
+                    console.log('Service Worker registered: ' + serviceWorker);
+                })
+                .catch(error => {
+                    console.log('Error registering the Service Worker: ' + error);
+                });
         }
     </script>
 </body>
