@@ -57,7 +57,7 @@
   "description": "JOKENPÔ - GAME",
   "start_url": "pweb/Atividade%207/index.html?launcher=true",
   "background_color": "#ffffff",
-  "scope": "/",
+  "scope": "pweb/Atividade%207/",
   "theme_color": "#ffffff",
   "display": "standalone",
   "orientation": "portrait",
