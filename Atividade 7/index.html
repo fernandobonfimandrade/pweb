@@ -5,12 +5,66 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jokenpô</title>
+    <title>JANKENPON</title>
     <link rel="manifest" href="manifest.webmanifest">
     <style>
         html {
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
             font-weight: bold;
+        }
+
+        body {
+            background: rgb(255, 210, 30);
+            background-image: url('./img/bgHand.jpg');
+        }
+
+        .modal{
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.679);
+            z-index: 10;
+        }
+        .modal-body{
+            background-color: rgb(255, 0, 0);
+            border: solid 8px rgb(57, 87, 255);
+            width: 60%;
+            display: flex;
+            z-index: 11;
+            position: relative;
+            border-radius: 30px;
+        }
+        .modal-close {
+            position: absolute;
+            top: -33px;
+            right: -33px;
+            width: 25px;
+            height: 25px;
+            padding: 10px;
+            background: #ffcf23;
+            border: solid 7px #fff;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 26px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-close:hover{
+            background: #ff2323;
+        }
+        #modal-text{
+            text-align: center;
+            font-size: 2em;
+            padding: 0px 45px;
+            color: #fff;
+            text-shadow: #000 2px 2px 2px;
         }
 
         nav ul {
@@ -26,41 +80,57 @@
             display: flex;
         }
 
-        nav ul li {
+        nav.escolhas ul li {
             float: left;
             list-style: none;
             padding: 5px;
-            background-color: aqua;
+            background-color: rgb(255, 250, 219);
             text-align: center;
             display: flex;
             flex-direction: row;
             flex: 1;
             justify-content: center;
-            border: black solid 2px;
+            border: #a98307 solid 2px;
             border-radius: 15px;
             margin: 2px;
+            cursor: pointer;
         }
 
         nav ul li:hover {
-            background-color: aquamarine;
+            background-color: #a9ad6c;
         }
 
-        .oponente {
+        .cena {
             width: 100%;
             max-width: 600px;
-            height: 300px;
+            height: 250px;
             margin: 0 auto;
-            border: black solid 2px;
+            border: #a98307  solid 2px;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: cover;
             border-radius: 15px;
-            background-color: aqua;
+            background-color: rgb(0, 0, 0);
             margin-top: 5px;
             margin-bottom: 5px;
             text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
-            align-items: center;
             flex-direction: column;
+            position: relative;
+        }
+        .bag {
+            width: 100%;
+            max-width: 600px;
+            height: 250px;
+            margin: 0 auto;
+            border: #a98307 solid 2px;
+            border-radius: 15px;
+            background-color: rgb(148 0 0);
+            margin-top: 5px;
+            margin-bottom: 5px;
+            text-align: center;
             position: relative;
         }
 
@@ -107,12 +177,13 @@
             align-items: center;
         }
 
-        .resultadoLabel {
-            background: #fff;
-            border: solid 2px rgb(0, 0, 0);
+        .resultadoLabel,#resultado {
+            background: #3278e0;
+            border: solid 2px rgb(10 74 84);
             margin: 5px;
             padding: 3px 10px;
             border-radius: 30px;
+            color: #fff;
         }
 
         .empate {
@@ -129,12 +200,168 @@
             background: rgb(214, 0, 0);
             color: #fff;
         }
+
+
+        #menuInicialContainer {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 9;
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .menuInicialBG {
+            width: 100vw;
+            height: 100vh;
+            background-color: rgb(255, 210, 30);
+            background-image: repeating-linear-gradient(45deg, rgb(255, 210, 30) 7%, rgba(255, 255, 255, 0.419) 10%);
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav.menuInicial {
+            background-color: rgb(255, 0, 0);
+            background-image: url('./img/icon-512x512.png');
+            background-repeat: no-repeat;
+            background-position-y: bottom;
+            background-size: 30%;
+            border: solid 8px rgb(57, 87, 255);
+            width: 60%;
+            height: 70%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            border-radius: 30px;
+            box-shadow: #0000009e 20px 20px 20px;
+            flex-direction: column;
+            z-index: 9;
+        }
+
+        .menuInicial h3 {
+            font-size: 30px;
+            color: #fff;
+            text-shadow: #0000009e 5px 5px 5px;
+        }
+
+        nav.menuInicial ul {
+            flex-direction: column;
+            width: 85%;
+            overflow: visible;
+        }
+
+        nav.menuInicial ul li {
+            text-align: center;
+            font-size: 35px;
+            margin: 20px 0px;
+            padding: 10px 0px;
+            background-color: rgb(29, 189, 42);
+            border: solid 3px rgb(255, 255, 255);
+            border-radius: 30px;
+            color: #fff;
+            cursor: pointer;
+            transition: ease-in-out;
+        }
+
+        nav.menuInicial ul li:hover {
+            position: relative;
+            top: -2px;
+            left: -2px;
+            box-shadow: #0000009e 20px 20px 20px;
+        }
+
+        .menuHide {
+            position: relative;
+            animation: menunicialUP .5s ease-in forwards;
+        }
+
+        .premios:hover{
+            background-color: #d3bd50;
+        }
+        .premios{
+            cursor: pointer;
+            margin: 2px;
+            font-size: 40px;
+            float: left;
+            background-color: #ffec8d;
+            border-radius: 8px;
+        }
+
+        .bag h4 {
+            margin: 2px 0px;
+            padding-bottom: 3px;
+            border-bottom: solid 3px;
+            color: #ffe393;
+        }
+
+        #bag{
+            padding: 5px;
+        }
+
+        /* animações */
+
+        @keyframes menunicialUP {
+            0% {
+                top: 0px;
+            }
+
+            20% {
+                top: 50px;
+            }
+
+            100% {
+                top: -100vh;
+            }
+        }
+
+        .menuBGHide {
+            animation: menunicialBGDOWN .8s ease-in forwards;
+            border-top: solid 50px rgb(20, 55, 255);
+        }
+
+        /* animações */
+
+        @keyframes menunicialBGDOWN {
+            0% {
+                top: 0px;
+            }
+
+            100% {
+                top: 100vh;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div id="menuInicialContainer">
+        <div class="menuInicialBG "></div>
+        <nav class="menuInicial ">
+            <h3>JANKENPON</h3>
+            <ul>
+                <li onclick="startGame()">Iniciar</li>
+                <li onclick="regrasDojogo()">Regras</li>
+                <li onclick="SobreJogo()">Sobre</li>
+            </ul>
+        </nav>
+    </div>
     <section>
-        <div class="oponente">
+        <nav class="escolhas">
+            <ul>
+                <li onclick="location.reload()">Reiniciar</li>
+            </ul>
+        </nav>
+        <div class="cena">
             <div class="pontuacao">
                 <div class="label"><img src="./img/star.png"><span id="vitorias">0</span></div>
                 <div class="label"><img src="./img/defeat.png"><span id="derrotas">0</span></div>
@@ -142,31 +369,107 @@
             <div class="moedas">
                 <div class="label"><img src="./img/coins.png"><span id="moedas">20</span></div>
             </div>
-            <img src="./img/bot.png" alt="oponente" id="oponenteIMG">
+            <img src="./img/start.png" alt="oponente" id="oponenteIMG">
             <br>
-            <span id="resultado">JOKENPÔ</span>
+            <span id="resultado">👇</span>
         </div>
-        <nav>
+        <nav class="escolhas">
             <ul>
                 <li onclick="userEscolhe(0)"><img src="./img/pedra.png" alt="pedra"></li>
                 <li onclick="userEscolhe(1)"><img src="./img/papel.png" alt="papel"></li>
                 <li onclick="userEscolhe(2)"><img src="./img/tesoura.png" alt="tesoura"></li>
             </ul>
         </nav>
-
+        <div class="bag" >
+            <h4>Inventário</h4>
+            <div id="bag"></div>
+        </div>
     </section>
+    <div class="modal" id="modal">
+        <div class="modal-body" >
+            <div class="modal-close" onclick="closeModal()" >X</div>
+            <h6 id="modal-text" ></h6>
+        </div>
+    </div>
     <script>
-
         var vitorias = 0;
         var derrotas = 0;
         var moedas = 20;
         var ingame = 0;
+        var premios = ['<span title="Vender" class="premios" onclick="vender(1,this)" >🍌</span>',
+                    '<span title="Vender" class="premios" onclick="vender(1,this)" >🍎</span>',
+                    '<span title="Vender" class="premios" onclick="vender(1,this)" >🍏</span>',
+                    '<span title="Vender" class="premios" onclick="vender(2,this)" >🍊</span>',
+                    '<span title="Vender" class="premios" onclick="vender(2,this)" >🧁</span>',
+                    '<span title="Vender" class="premios" onclick="vender(10,this)" >🛵</span>',
+                    '<span title="Vender" class="premios" onclick="vender(15,this)" >🚗</span>',
+                    '<span title="Vender" class="premios" onclick="vender(1,this)" >🥕</span>',
+                    '<span title="Vender" class="premios" onclick="vender(2,this)" >🍇</span>',
+                    '<span title="Vender" class="premios" onclick="vender(3,this)" >🍣</span>',
+                    '<span title="Vender" class="premios" onclick="vender(1,this)" >🍓</span>',
+                    '<span title="Vender" class="premios" onclick="vender(2,this)" >🍩</span>',
+                    '<span title="Vender" class="premios" onclick="vender(2,this)" >🍿</span>',
+                    '<span title="Vender" class="premios" onclick="vender(2,this)" >🍟</span>',
+                    '<span title="Vender" class="premios" onclick="vender(1,this)" >🍍</span>',
+                    '<span title="Vender" class="premios" onclick="vender(2,this)" >🧀</span>',
+                    '<span title="Vender" class="premios" onclick="vender(3,this)" >🍕</span>',
+                    '<span title="Vender" class="premios" onclick="vender(3,this)" >🍚</span>',
+                    '<span title="Vender" class="premios" onclick="vender(5,this)" >🌭</span>',
+                    '<span title="Vender" class="premios" onclick="vender(1,this)" >🍬</span>',
+                    '<span title="Vender" class="premios" onclick="vender(5,this)" >🍺</span>',
+                    '<span title="Vender" class="premios" onclick="vender(2,this)" >🍭</span>',
+                    '<span title="Vender" class="premios" onclick="vender(4,this)" >🍫</span>',
+                    '<span title="Vender" class="premios" onclick="vender(6,this)" >🍔</span>']
+
+        const aud_theme = new Audio('sounds/theme.mp3');
+        const aud_jankenpon = new Audio('sounds/jankenpon.mp3');
+        var img=new Image();
+        img.src='./img/batleBegin.gif';
+        var img2=new Image();
+        img2.src='./img/fight.gif';
 
         var imgs = ["./img/pedra.png", "./img/papel.png", "./img/tesoura.png"]
-        var palavra = ["JO", "-KEN", "-PÔ"]
+
+
+        function openModal(text){
+            document.getElementById('modal').style.display = 'flex';
+            document.getElementById('modal-text').innerHTML = text;
+        }
+
+        function closeModal(){
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('modal-text').innerHTML = '';
+        }
 
         function semMoedas() {
-            alert('Você está sem moedas!');
+            openModal('Você está sem moedas!<br>Se tiver itens venda eles para conseguir mais moedas, ou reinicie o jogo.');
+        }
+        function regrasDojogo() {
+            openModal('Clique em Pedra (👊), Papel (✋) ou Tesoura (✌) para iniciar a rodada.<br>Você sempre vai iniciar o jogo com '+moedas+' moedas, cada jogada gasta 1 moeda.<br>Ganhando jogada vc recebe um item, que pode ser vendido para conseguir mais moedas.<br>Se divirta!');
+        }
+        function SobreJogo() {
+            openModal('Jogo desenvolvido por Fernando Bonfim como atividade de aula da Disciplina Programação WEB na FATEC Sorocaba!');
+        }
+
+        function hasClass(ele, cls) {
+            return !!ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+        }
+
+        function addClass(ele, cls) {
+            if (!hasClass(ele, cls)) ele.className = ele.className.trim() + " " + cls;
+        }
+
+
+        function playAudio(audio,loop) {
+            audio.loop = loop;
+            audio.volume = 0.3;
+            audio.play();
+        }
+
+        function vender(valor, el){
+            moedas += valor;
+            document.getElementById('moedas').innerHTML = moedas;
+            el.remove();
         }
 
         function resultado(result, oponente) {
@@ -177,6 +480,9 @@
                     break;
                 case 1:
                     vitorias++;
+                    setTimeout(() => {
+                        document.getElementById('bag').innerHTML = document.getElementById('bag').innerHTML + premios[Math.floor(Math.random() * 24)];
+                    }, 1000);
                     resultadoTXT = '<span class="resultadoLabel ganhou" >ganhou</span>';
                     break;
                 case 2:
@@ -188,6 +494,7 @@
             setTimeout(() => {
                 document.getElementById('oponenteIMG').src = imgs[oponente];
                 document.getElementById('resultado').innerHTML = resultadoTXT;
+                document.getElementById('resultado').style.display = "block";
                 document.getElementById('vitorias').innerHTML = vitorias;
                 document.getElementById('derrotas').innerHTML = derrotas;
                 ingame = 0;
@@ -212,28 +519,19 @@
             }
             if (ingame == 0) {
                 moedas--;
+                document.getElementById('resultado').innerHTML = '';
                 document.getElementById('moedas').innerHTML = moedas;
                 ingame = 1;
-                document.getElementById('oponenteIMG').src = "./img/bot.png";
-                document.getElementById('resultado').innerHTML = 'START';
-                var i = 0;
-                var intervalor = setInterval(() => {
-                    if (i == 0) {
-                        document.getElementById('resultado').innerHTML = '';
-                    }
-                    oponente = i++;
-                    document.getElementById('oponenteIMG').src = imgs[oponente];
-                    document.getElementById('resultado').innerHTML += palavra[oponente];
-                    if (i == 3) {
-                        i = 0;
-                    }
-                }, 500);
+                document.getElementById('oponenteIMG').style.display = "none";
+                document.getElementById('resultado').style.display = "none";
+                document.getElementsByClassName("cena")[0].style.backgroundImage = "url('./img/jankenpon.gif')";
+                playAudio(aud_jankenpon,false)
 
                 setTimeout(() => {
-                    clearInterval(intervalor);
+                    document.getElementsByClassName("cena")[0].style.backgroundImage = "url('./img/fight.gif')";
                     const oponente = Math.floor(Math.random() * 3);
-
-                    document.getElementById('oponenteIMG').src = "./img/bot.png";
+                    document.getElementById('oponenteIMG').src = "./img/interrogation.png";
+                    document.getElementById('oponenteIMG').style.display = "block";
                     if (Number(usuario) == Number(oponente)) {
                         resultado(0, oponente);
                     } else {
@@ -243,11 +541,9 @@
                             resultado(2, oponente);
                         }
                     }
-                }, 3500);
+                }, 2100);
             }
         }
-
-
 
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker
@@ -258,6 +554,21 @@
                 .catch(error => {
                     console.log('Error registering the Service Worker: ' + error);
                 });
+        }
+
+        function startGame() {
+            playAudio(aud_theme,true);
+            addClass(document.getElementsByClassName("menuInicialBG")[0], 'menuBGHide');
+            addClass(document.getElementsByClassName("menuInicial")[0], 'menuHide');
+            setTimeout(() => {
+                document.getElementById('menuInicialContainer').remove();
+            }, 800);
+            setTimeout(() => {
+                document.getElementsByClassName("cena")[0].style.backgroundImage = "url('./img/batleBegin.gif')";
+            }, 400);
+            setTimeout(() => {
+                document.getElementsByClassName("cena")[0].style.backgroundImage = "url('./img/fight.gif')";
+            }, 2500);
         }
     </script>
 </body>

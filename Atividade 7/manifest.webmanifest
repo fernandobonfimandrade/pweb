@@ -1,14 +1,13 @@
 {
-    "theme_color": "#20defa",
-    "background_color": "#ffffff",
+    "theme_color": "#FFD21E",
+    "background_color": "#FFD21E",
     "display": "standalone",
-    "scope": "pweb/Atividade%207/",
-    "start_url": "pweb/Atividade%207/index.html?launcher=true",
-    "name": "JOKENP\u00d4",
-    "short_name": "JOKENP\u00d4",
-    "description": "JOKENP\u00d4 - GAME",
-    "icons": [
-        {
+    "scope": "/jokenpo-game/",
+    "start_url": "/jokenpo-game/index.html?launcher=true",
+    "name": "JANKENPON",
+    "short_name": "JANKENPON",
+    "description": "JANKENPON - GAME",
+    "icons": [{
             "src": "img/icon-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
