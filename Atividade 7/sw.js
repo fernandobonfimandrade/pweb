@@ -1,4 +1,4 @@
-const staticCacheName = 'site-static-v7';
+const staticCacheName = 'site-static-v8';
 const assets = ['jokenpo-game/index.html', 
 'jokenpo-game/img/star.png', 
 'jokenpo-game/img/defeat.png', 
@@ -12,6 +12,11 @@ const assets = ['jokenpo-game/index.html',
 'jokenpo-game/img/fight.gif', 
 'jokenpo-game/sounds/theme.mp3', 
 'jokenpo-game/sounds/jankenpon.mp3', 
+'jokenpo-game/font/ComicRelief-webfont.eot',
+'jokenpo-game/font/ComicRelief-webfont.eot',
+'jokenpo-game/font/ComicRelief-webfont.woff2',
+'jokenpo-game/font/ComicRelief-webfont.woff',
+'jokenpo-game/font/ComicRelief-webfont.ttf',
 'jokenpo-game/img/tesoura.png'];
 self.addEventListener('install', evt => {
     evt.waitUntil(caches.open(staticCacheName).then((cache) => {

@@ -8,8 +8,21 @@
     <title>JANKENPON</title>
     <link rel="manifest" href="manifest.webmanifest">
     <style>
+        @font-face {
+            font-family: 'comic_reliefregular';
+            src: url('./font/ComicRelief-webfont.eot');
+            src: url('./font/ComicRelief-webfont.eot?#iefix') format('embedded-opentype'),
+                url('./font/ComicRelief-webfont.woff2') format('woff2'),
+                url('./font/ComicRelief-webfont.woff') format('woff'),
+                url('./font/ComicRelief-webfont.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+
+
         html {
-            font-family: "Comic Sans MS", "Comic Sans", cursive;
+            font-family: 'comic_reliefregular';
             font-weight: bold;
         }
 
@@ -33,11 +46,12 @@
         .modal-body{
             background-color: rgb(255, 0, 0);
             border: solid 8px rgb(57, 87, 255);
-            width: 60%;
+            width: 70%;
             display: flex;
             z-index: 11;
             position: relative;
             border-radius: 30px;
+            justify-content: center;
         }
         .modal-close {
             position: absolute;
@@ -61,8 +75,9 @@
         }
         #modal-text{
             text-align: center;
-            font-size: 2em;
-            padding: 0px 45px;
+            width: 100%;
+            font-size: 18px;
+            padding: 0px 20px;
             color: #fff;
             text-shadow: #000 2px 2px 2px;
         }
@@ -427,6 +442,8 @@
         img.src='./img/batleBegin.gif';
         var img2=new Image();
         img2.src='./img/fight.gif';
+        var img3=new Image();
+        img3.src='./img/jankenpon.gif';
 
         var imgs = ["./img/pedra.png", "./img/papel.png", "./img/tesoura.png"]
 
@@ -460,9 +477,9 @@
         }
 
 
-        function playAudio(audio,loop) {
+        function playAudio(audio,loop,volume) {
             audio.loop = loop;
-            audio.volume = 0.3;
+            audio.volume = volume;
             audio.play();
         }
 
@@ -525,7 +542,7 @@
                 document.getElementById('oponenteIMG').style.display = "none";
                 document.getElementById('resultado').style.display = "none";
                 document.getElementsByClassName("cena")[0].style.backgroundImage = "url('./img/jankenpon.gif')";
-                playAudio(aud_jankenpon,false)
+                playAudio(aud_jankenpon,false,.6)
 
                 setTimeout(() => {
                     document.getElementsByClassName("cena")[0].style.backgroundImage = "url('./img/fight.gif')";
@@ -557,7 +574,7 @@
         }
 
         function startGame() {
-            playAudio(aud_theme,true);
+            playAudio(aud_theme,true,0.2);
             addClass(document.getElementsByClassName("menuInicialBG")[0], 'menuBGHide');
             addClass(document.getElementsByClassName("menuInicial")[0], 'menuHide');
             setTimeout(() => {
