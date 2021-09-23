@@ -35,9 +35,14 @@
         .input-group span{
             width: 100%;
             display: block;
+            padding-bottom: 5px;
         }
         .input-group label{
             margin: 5px;
+            background: #424242;
+            padding: 5px;
+            border-radius: 3px;
+            display: inline-block;
         }
         .text-center{
             text-align: center;
@@ -71,22 +76,22 @@
             <form id="form" >
                 <div class="input-group">
                     <span>Idade</span>
-                    <input type="number" name="idade">
+                    <input required type="number" name="idade">
                 </div>
                 <div class="input-group">
                     <span>Sexo</span>
                     <div class="text-center">
-                        <label>Masculino<input type="radio" name="sexo" value="M"></label>
-                        <label>Feminino<input type="radio" name="sexo" value="F"></label>
+                        <label><input required type="radio" name="sexo" value="M">Masculino</label>
+                        <label><input required type="radio" name="sexo" value="F">Feminino</label>
                     </div>
                 </div>
                 <div class="input-group">
                     <span>Opinião</span>
                     <div class="text-center">
-                        <label>Ótimo<input type="radio" name="opniao" value="4"></label>
-                        <label>Bom<input type="radio" name="opniao" value="3"></label>
-                        <label>Regular<input type="radio" name="opniao" value="2"></label>
-                        <label>Péssimo<input type="radio" name="opniao" value="1"></label>
+                        <label><input required type="radio" name="opniao" value="4">Ótimo</label>
+                        <label><input required type="radio" name="opniao" value="3">Bom</label>
+                        <label><input required type="radio" name="opniao" value="2">Regular</label>
+                        <label><input required type="radio" name="opniao" value="1">Péssimo</label>
                     </div>
                 </div>
                 <div class="btn-group text-center">
@@ -175,6 +180,13 @@
 
     function saveForm(){
         const form = document.getElementById('form');
+
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+
         const resposta = {};
         const formData = new FormData(form);
         for (let key of formData.keys()) {
