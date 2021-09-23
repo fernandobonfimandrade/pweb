@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa</title>
+    <style>
+
+        .container{
+            max-width: 500px;
+            margin: 10px auto;
+            background-color: #262626;
+            border-radius: 3px;
+        }
+        .form{
+            padding: 10px;
+            color: #fff;
+        }
+        .input-group{
+            width: CALC(100% - 20px);
+            font-size: 25px;
+            margin: 0 auto 10px;
+            padding: 5px;
+            background-color: #000000;
+            border-radius: 3px;
+        }
+        .btn-group{
+            width: CALC(100% - 20px);
+            font-size: 25px;
+            margin: 0 auto 10px;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .input-group span{
+            width: 100%;
+            display: block;
+        }
+        .input-group label{
+            margin: 5px;
+        }
+        .text-center{
+            text-align: center;
+        }
+        .card{
+            border-radius: 3px;
+            background-color: #fff;
+            border: solid 2px #262626;
+            margin: 2px;
+            padding: 2px;
+            width: calc(30% - 4px);
+            display: inline-block;
+        }
+
+ 
+        .card label{
+            font-size: 15px;
+            display: block;
+            width: 100%;
+        }
+        .card span{
+            font-size: 25px;
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form">
+            <form id="form" >
+                <div class="input-group">
+                    <span>Idade</span>
+                    <input type="number" name="idade">
+                </div>
+                <div class="input-group">
+                    <span>Sexo</span>
+                    <div class="text-center">
+                        <label>Masculino<input type="radio" name="sexo" value="M"></label>
+                        <label>Feminino<input type="radio" name="sexo" value="F"></label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <span>Opinião</span>
+                    <div class="text-center">
+                        <label>Ótimo<input type="radio" name="opniao" value="4"></label>
+                        <label>Bom<input type="radio" name="opniao" value="3"></label>
+                        <label>Regular<input type="radio" name="opniao" value="2"></label>
+                        <label>Péssimo<input type="radio" name="opniao" value="1"></label>
+                    </div>
+                </div>
+                <div class="btn-group text-center">
+                    <button type="button" onclick="saveForm()" >Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container text-center">
+        <div class="card">
+            <label class="text-center">Nº Respostas</label>
+            <span class="text-center" id="nRespostas">0</span>
+        </div>
+        <div class="card">
+            <label class="text-center">Média Idade</label>
+            <span class="text-center" id="mediaIdade">0</span>
+        </div>
+        <div class="card">
+            <label class="text-center">Maior Idade</label>
+            <span class="text-center" id="maiorIdade">0</span>
+        </div>
+        <div class="card">
+            <label class="text-center">Menor Idade</label>
+            <span class="text-center" id="menorIdade">0</span>
+        </div>
+        <div class="card">
+            <label class="text-center">Nº Opinião Péssima</label>
+            <span class="text-center" id="nOpPes">0</span>
+        </div>
+        <div class="card">
+            <label class="text-center">% Opinião Bom/Ótimo</label>
+            <span class="text-center" id="percOpBO">0</span>
+        </div>
+        <div class="card">
+            <label class="text-center">Nº Mulheres</label>
+            <span class="text-center" id="nMulher">0</span>
+        </div>
+        <div class="card">
+            <label class="text-center">Nº Homens</label>
+            <span class="text-center" id="nHomen">0</span>
+        </div>
+    </div>
+<script>
+
+    var dados = {
+        n_respostas: 0,
+        media_idade: 0,
+        maior_idade: 1000,
+        menor_idade: 0,
+        n_op_pessimo: 0,
+        perc_opiniaoBO: 0,
+        n_mulheres: 0,
+        n_homens: 0,
+        respostas: [],
+    }
+
+    function calculaMediaIdade(){
+        let soma = 0;
+        dados.respostas.forEach(resposta => {
+            soma += parseInt(resposta.idade);
+        });
+
+        return parseFloat(soma/dados.respostas.length).toFixed(2);
+    }
+
+    function calculaPercOpiniaoBO(){
+        let soma = 0;
+        dados.respostas.forEach(resposta => {
+            soma += [3,4].includes(parseInt(resposta.opniao)) ? 1 : 0;
+        });
+
+        return parseFloat((soma*100)/dados.respostas.length).toFixed(2);
+    }
+
+    function exibirDados(){
+        document.getElementById('nRespostas').innerHTML = dados.n_respostas;
+        document.getElementById('mediaIdade').innerHTML = dados.media_idade;
+        document.getElementById('maiorIdade').innerHTML = dados.maior_idade;
+        document.getElementById('menorIdade').innerHTML = dados.menor_idade;
+        document.getElementById('nOpPes').innerHTML = dados.n_op_pessimo;
+        document.getElementById('percOpBO').innerHTML = dados.perc_opiniaoBO;
+        document.getElementById('nMulher').innerHTML = dados.n_mulheres;
+        document.getElementById('nHomen').innerHTML = dados.n_homens;
+    }
+
+
+    function saveForm(){
+        const form = document.getElementById('form');
+        const resposta = {};
+        const formData = new FormData(form);
+        for (let key of formData.keys()) {
+            resposta[key] = formData.get(key);
+        }
+
+        dados.n_respostas += 1;
+        if(dados.respostas.length == 0){
+            dados.maior_idade = resposta.idade;
+            dados.menor_idade = resposta.idade;
+        }else{
+            dados.maior_idade = dados.maior_idade > resposta.idade ? dados.maior_idade : resposta.idade ;
+            dados.menor_idade = dados.menor_idade < resposta.idade ? dados.menor_idade : resposta.idade ;
+        }
+        dados.n_op_pessimo += resposta.opniao == 1 ? 1 : 0 ;
+        dados.n_mulheres += resposta.sexo == 'F' ? 1 : 0 ;
+        dados.n_homens += resposta.sexo == 'M' ? 1 : 0 ;
+
+        dados.respostas.push(resposta);
+        dados.media_idade = calculaMediaIdade();
+        dados.perc_opiniaoBO = calculaPercOpiniaoBO();
+
+        exibirDados();
+        form.reset();
+    }
+
+</script>
+</body>
+</html>
