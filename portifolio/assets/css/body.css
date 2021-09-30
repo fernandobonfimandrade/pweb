@@ -1,0 +1,44 @@
+.networlList{
+    max-width: 1000px;
+    margin: 0 auto;
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+}
+
+.networlList li {
+    color: #3d52f2;
+    float: left;
+    margin: 5px;
+    font-size: 15px;
+    padding: 3px 5px;
+    padding: 11px 23px;
+    background-color: transparent;
+    background-image: linear-gradient(180deg, #3d52f2, #3d52f2)
+      ,linear-gradient(225deg, #3d52f2, #3d52f2)
+      ,linear-gradient(0deg, #3d52f2, #3d52f2)
+      ,linear-gradient(90deg, #3d52f2, #3d52f2)
+      ,linear-gradient(135deg, transparent 9px, #3d52f2 10px, #3d52f2 12px, transparent 12px)
+      ;
+    background-position: top right
+      ,top right
+      ,bottom left
+      ,bottom left
+      ,top left
+      ;
+    background-size: calc(100% - 15px) 2px
+    ,2px 65%
+    ,100% 9px
+    ,2px calc(100% - 15px)
+    ,15px 15px;
+    background-repeat: no-repeat;
+}
+.networlList li:nth-child(2) {
+    color: #fff;
+    background-image: linear-gradient(180deg, #fff, #fff)
+      ,linear-gradient(225deg, #fff, #fff)
+      ,linear-gradient(0deg, #fff, #fff)
+      ,linear-gradient(90deg, #fff, #fff)
+      ,linear-gradient(135deg, transparent 9px, #fff 10px, #fff 12px, transparent 12px);
+}
+
