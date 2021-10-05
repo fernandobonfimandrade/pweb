@@ -104,6 +104,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   setInterval(() => {
 
+    const glitchs = document.getElementsByClassName('glitch');
+    for (let index = 0; index < glitchs.length; index++) {
+      const text = glitchs[index];
+      addClass(text,'glitchClass');
+      setTimeout(() => {
+        removeClass(text,'glitchClass');
+      }, 1000);
+    }
     const texts = document.getElementsByTagName('p');
     for (let index = 0; index < texts.length; index++) {
       const text = texts[index];
