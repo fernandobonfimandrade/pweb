@@ -188,7 +188,7 @@ window.onresize = function(event) {
   document.getElementById('grain').style.height = heigth+'px';
   document.getElementById('borderCorner').style.width = width+'px';
   document.getElementById('borderCorner').style.height = heigth+'px';
-  drawLines();
+  // drawLines();
 };
 
 
