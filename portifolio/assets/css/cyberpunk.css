@@ -522,19 +522,19 @@ p{
 .carro1,.carro2,.carro3,.police{
     transform: rotate(10deg);
 }
-.police::before,.police::after{
+.police > div::before,.police > div::after{
     content: '';
     position: fixed;
-    width: 4px;
-    height: 2px;
+    width: 9px;
+    height: 4px;
 }
-.police::before{
+.police > div::before{
     top: 4px;
-    left: 35px;
+    left: 37px;
     background-color: blue;
     animation: giroflexBlue .5s linear infinite;
 }
-.police::after{
+.police > div::after{
     top: 4px;
     left: 31px;
     background-color: red;
