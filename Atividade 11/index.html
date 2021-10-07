@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 10</title>
+    <script src="./script.js"></script>
+</head>
+<body>
+    <label for="">Base
+        <input type="number" id="base">
+    </label>
+    <label for="">Altura
+        <input type="number" id="altura">
+    </label>
+    <button onclick="renderRetangulo()" >Calcular Area</button>
+    <div id="retangulo" style="margin: 5px;border: solid 2px #000;" ></div>
+    <span id="resultadoArea"></span>
+    <hr>
+    <label for="">Tipo de conta
+        <input type="radio" value="c" onclick="mudaForm(this.value)" checked name="tipoConta">Corrente
+        <input type="radio" value="p" onclick="mudaForm(this.value)" name="tipoConta">Poupança
+    </label><br>
+    <label for="">Correntista
+        <input type="text" id="correntista">
+    </label><br>
+    <label for="">Banco
+        <input type="text" id="banco">
+    </label><br>
+    <label for="">Numero Conta
+        <input type="text" id="numeroConta">
+    </label><br>
+    <label for="">Saldo
+        <input type="number" id="saldo">
+    </label><br>
+    <div id="cForm">
+        <label for="">Saldo Especial
+            <input type="number" id="saldoEspecial">
+        </label><br>
+    </div>
+    <div id="pForm" style="display: none;">
+        <label for="">Juros
+            <input type="number" id="juros">
+        </label><br>
+        <label for="">Data Vencimento
+            <input type="date" id="vencimento">
+        </label><br>
+    </div>
+    <br>
+    <button onclick="salvarConta()" >Salvar</button>
+    <p>Contas Criadas</p>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Tipo Conta</td>
+                <td>Correntista</td>
+                <td>Banco</td>
+                <td>Numero Conta</td>
+                <td>Saldo</td>
+                <td>Info. Adicional</td>
+            </tr>
+        </thead>
+        <tbody id="contasCriadas" ></tbody>
+    </table>
+</body>
+</html>
