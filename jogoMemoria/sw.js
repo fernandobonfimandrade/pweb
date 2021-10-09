@@ -1,4 +1,4 @@
-const staticCacheName = 'site-static-v1';
+const staticCacheName = 'site-static-v2';
 const assets = ['memo-game/index.html',  
 'memo-game/assets/font/ComicRelief-webfont.eot',
 'memo-game/assets/font/ComicRelief-webfont.woff2',
