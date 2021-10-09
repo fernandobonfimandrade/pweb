@@ -1,7 +1,8 @@
 {
     "theme_color": "#0e5eb3",
     "background_color": "#0e5eb3",
-    "display": "portrait",
+    "display": "standalone",
+    "orientation": "portrait",
     "scope": "/jogoMemoria/",
     "start_url": "/jogoMemoria/index.html?launcher=true",
     "name": "Memo",
