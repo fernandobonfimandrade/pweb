@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="./assets/memo.css">
+</head>
+<body>
+    <div id="info">
+        <div class="buttons">
+            <div class="gameButtons" onclick="newGame()">Novo Jogo</div>
+            <div class="gameButtons" onclick="escolhaDificuldade()">Dificuldade</div><br>
+        </div>
+        <div id="timer">-</div>
+    </div>
+    <div class="container">
+        <div id="board" class="grid-container">
+        </div>
+    </div>
+    <div class="modal" id="modal">
+        <div class="modal-body" >
+            <div class="modal-close" onclick="closeModal()" >X</div>
+            <h6 id="modal-text" >
+                <div class="dificuldades" >
+                    <label>
+                        <input type="radio" value="0" name="dificuldade">Fácil
+                    </label>
+                    <label>
+                        <input type="radio" checked value="1" name="dificuldade">Médio
+                    </label>
+                    <label>
+                        <input type="radio" value="2" name="dificuldade">Difícil
+                    </label>
+                    <label>
+                        <input type="radio" value="3" name="dificuldade">Livre
+                    </label>
+                </div>
+            </h6>
+        </div>
+    </div>
+</body>
+<script>
+
+var game;
+var clock;
+var baralho = [
+    {icone: '🐕️',valor: 1},
+    {icone: '🐒️',valor: 2},
+    {icone: '🐉️',valor: 3},
+    {icone: '🐓️',valor: 4},
+    {icone: '🍄️',valor: 5},
+    {icone: '🍔️',valor: 6},
+    {icone: '🍺️',valor: 7},
+    {icone: '🍩️',valor: 8},
+    {icone: '🚲️',valor: 9},
+    {icone: '🎃️',valor: 10},
+    {icone: '🏍️',valor: 11},
+    {icone: '🗡️',valor: 12},
+    {icone: '🎮️',valor: 13},
+    {icone: '☢️',valor: 14},
+    {icone: '📱️',valor: 15}
+]
+var _dificuldade = [180,120,60,0];
+
+
+function openModal(text){
+    document.getElementById('modal').style.display = 'flex';
+    //document.getElementById('modal-text').innerHTML = text;
+}
+
+function closeModal(){
+    document.getElementById('modal').style.display = 'none';
+    //document.getElementById('modal-text').innerHTML = '';
+}
+
+function escolhaDificuldade(){
+    openModal();
+}
+
+
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
+function hasClass(ele,cls) {
+  return !!ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+}
+
+function addClass(ele,cls) {
+  if (!hasClass(ele,cls)) ele.className = ele.className.trim()+" "+cls;
+}
+
+function removeClass(ele,cls) {
+  if (hasClass(ele,cls)) {
+    var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+    ele.className=ele.className.replace(reg,'');
+  }
+}
+
+class Timer{
+    timer = 0;
+    constructor(game,element,timeInit){
+        this.timeInit = timeInit;
+        this.element = element;
+        this.timer = timeInit;
+        this.interval = setInterval((timInit) => {
+            switch (this.timeInit) {
+                case 0:
+                    this.element.innerText = ++this.timer;
+                    break;
+            
+                default:
+                    this.element.innerText = --this.timer;
+                    if(this.timer == 0){
+                        this.clear();
+                        setTimeout(() => {
+                            game.start = false;
+                            alert('Game Over');
+                        }, 500);
+                    }
+                    break;
+            }
+           
+        }, 1000);
+    };
+    clear(){
+        clearInterval(this.interval);
+        this.element.innerText = '-';
+    }
+}
+
+
+class Memoria {
+    constructor() {
+        this.start = false;
+        this.clicavel = false;
+        this.cartasViradas = [];
+    };
+    endgame(){
+        if(document.getElementsByClassName('virar').length == document.getElementsByClassName('grid-item').length){
+            this.start = false;
+            this.clicavel = false;
+            setTimeout(() => {
+                alert('Fim de jogo');
+            }, 500);
+            clock.clear();
+        }
+    };
+    virarCarta(gridItem,valor){
+        if(this.cartasViradas.length < 2 && this.start && this.clicavel && !hasClass(gridItem,'virar')){
+            this.cartasViradas.push({card: gridItem, valor:valor});
+            addClass(gridItem,'virar');
+            if(this.cartasViradas.length == 2){
+                this.clicavel = false;
+                this.endgame();
+                if(this.cartasViradas[0].valor !== this.cartasViradas[1].valor){
+                    setTimeout(() => {
+                        this.cartasViradas.forEach(element => {
+                            this.desvirarCarta(element.card);
+                        });
+                        this.cartasViradas = [];
+                        this.clicavel = true;
+                    }, 1000);
+                }else{
+                    this.cartasViradas = [];
+                    this.clicavel = true;
+                }
+            }
+        }
+    };
+    desvirarCarta(gridItem){
+        removeClass(gridItem,'virar');
+    };
+    criarCard(icone,valor){
+        const gridItem = document.createElement('div');
+        gridItem.className = 'grid-item';
+        gridItem.onclick = () => { this.virarCarta(gridItem,valor) };
+        
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const front = document.createElement('div');
+        front.className = 'front';
+        front.innerText = '🌇️';
+        
+        const back = document.createElement('div');
+        back.className = 'back';
+        back.innerText = icone;
+        
+        card.appendChild(front);
+        card.appendChild(back);
+        gridItem.appendChild(card);
+        document.getElementById('board').appendChild(gridItem);
+        return;
+    };
+    init(){
+        // if(document.getElementsByClassName('virar').length > 0){
+        //     Array.prototype.forEach.call(document.getElementsByClassName('virar'),element => {
+        //         this.desvirarCarta(element);
+        //     });
+        // }
+        // setTimeout(() => {
+            document.getElementById('board').innerHTML = '';
+            const windowHeight = document.body.offsetHeight;
+            const qtdCardas = 2 * parseInt((windowHeight - 40)/106);    
+            const embaralhar = shuffle(baralho);
+            let baralhoJogo = embaralhar.slice(0,qtdCardas);
+            baralhoJogo = shuffle(baralhoJogo.concat(baralhoJogo));
+            for (let index = 0; index < baralhoJogo.length; index++) {
+                this.criarCard(baralhoJogo[index].icone,baralhoJogo[index].valor);
+            }
+        // }, 1000);
+    };
+    dificuldade(){
+        const dificuldade = document.getElementsByName('dificuldade');
+        let selecionado = '';
+        for (var i = 0; i < dificuldade.length; i++) {
+            if (dificuldade[i].checked) {
+                selecionado = parseInt(dificuldade[i].value);
+            }
+        }
+        return _dificuldade[selecionado];
+    };
+    newGame(){
+        this.start = true;
+        this.clicavel = true;
+    }
+}
+
+
+function init(){
+    game = new Memoria();
+    game.init();
+    return game;
+}
+
+
+function newGame(){
+    game.init();
+    if(clock !== undefined){
+        clock.clear();
+        clock = new Timer(game,document.getElementById('timer'), game.dificuldade());
+    }else{
+        clock = new Timer(game,document.getElementById('timer'), game.dificuldade());
+    }
+    game.newGame();
+}
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+    const game = init();
+})
+
+
+</script>
+</html>

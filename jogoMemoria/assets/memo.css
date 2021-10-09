@@ -1,0 +1,184 @@
+@font-face {
+    font-family: 'comic_reliefregular';
+    src: url('./font/ComicRelief-webfont.eot');
+    src: url('./font/ComicRelief-webfont.eot?#iefix') format('embedded-opentype'),
+        url('./font/ComicRelief-webfont.woff') format('woff'),
+        url('./font/ComicRelief-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+html {
+    font-family: 'comic_reliefregular';
+    font-weight: bold;
+    background-color: #000;
+}
+
+html,body{
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.grid-container{
+    background-color: rgb(38 38 38);
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.grid-item{
+    margin: 2px;
+    text-align: center;
+    perspective: 1000px;
+}
+
+.grid-item.virar .card {
+    transform: rotateY(180deg);
+}
+
+
+.card{
+    font-size: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-radius: 3px;
+    text-align: center;
+    padding: 2px;
+    height: 100px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+.front {
+  font-size: 50px;
+  background: radial-gradient(#0e5eb3, #030734);
+}
+
+.back {
+  transform: rotateY(180deg);
+    background: radial-gradient(#c9c9c9, rgb(31, 31, 31));
+}
+
+
+
+#info{
+    background-color: #000;
+    color: #fff;
+    height: 50px;
+    padding: 5px;
+    justify-content: space-between;
+}
+
+#info #timer{
+    width: 100%;
+    background: linear-gradient(45deg, #397e00 100%, transparent 10%);
+    border: solid #fff 1px;
+    border-radius: 3px;
+    height: 18px;
+    text-align: center;
+    font-size: 12px;
+    float: left;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+.gameButtons{
+    float: left;
+    width: 48%;
+    text-align: center;
+    font-size: 15px;
+    background-color: blue;
+    border: solid rgb(108, 142, 233) 1px;
+    border-radius: 3px;
+    margin: 0 auto 4px;
+}
+
+.modal{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.679);
+    z-index: 10;
+}
+.modal-body{
+    background-color: rgb(255, 0, 0);
+    border: solid 8px rgb(57, 87, 255);
+    width: 70%;
+    display: flex;
+    z-index: 11;
+    position: relative;
+    border-radius: 30px;
+    justify-content: center;
+}
+.modal-close {
+    position: absolute;
+    top: -33px;
+    right: -33px;
+    width: 25px;
+    height: 25px;
+    padding: 10px;
+    background: #ffcf23;
+    border: solid 7px #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 26px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-close:hover{
+    background: #ff2323;
+}
+#modal-text{
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+    padding: 0px 20px;
+    color: #fff;
+    text-shadow: #000 2px 2px 2px;
+}
+
+.dificuldades{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.dificuldades label{
+    margin-bottom: 5px;
+}
