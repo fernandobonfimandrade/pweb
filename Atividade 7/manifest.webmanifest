@@ -1,7 +1,8 @@
 {
     "theme_color": "#FFD21E",
     "background_color": "#FFD21E",
-    "display": "portrait",
+    "display": "standalone",
+    "orientation": "portrait",
     "scope": "/jokenpo-game/",
     "start_url": "/jokenpo-game/index.html?launcher=true",
     "name": "JANKENPON",
