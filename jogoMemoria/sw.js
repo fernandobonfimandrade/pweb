@@ -1,10 +1,10 @@
 const staticCacheName = 'site-static-v1';
-const assets = ['jogoMemoria/index.html',  
-'jogoMemoria/assets/font/ComicRelief-webfont.eot',
-'jogoMemoria/assets/font/ComicRelief-webfont.woff2',
-'jogoMemoria/assets/font/ComicRelief-webfont.woff',
-'jogoMemoria/assets/font/ComicRelief-webfont.ttf',
-'jogoMemoria/assets/memo.css'];
+const assets = ['memo-game/index.html',  
+'memo-game/assets/font/ComicRelief-webfont.eot',
+'memo-game/assets/font/ComicRelief-webfont.woff2',
+'memo-game/assets/font/ComicRelief-webfont.woff',
+'memo-game/assets/font/ComicRelief-webfont.ttf',
+'memo-game/assets/memo.css'];
 self.addEventListener('install', evt => {
     evt.waitUntil(caches.open(staticCacheName).then((cache) => {
         console.log('Cacheando arquivos estaticos...');
