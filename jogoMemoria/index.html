@@ -219,14 +219,14 @@ class Memoria {
         return;
     };
     init(){
-        const qtd = document.getElementsByClassName('grid-item').length;
-        const viradas = document.getElementsByClassName('grid-item');
+        const qtd = document.getElementsByClassName('virar').length;
+        const cartas = document.getElementsByClassName('grid-item');
         let timeout = 0;
         if(qtd > 0){
             for (let index = 0; index < qtd; index++) {
                 setTimeout(() => {
                 console.log(index);
-                this.desvirarCarta(viradas[index]);
+                this.desvirarCarta(cartas[index]);
                 }, timeout);
                 timeout+=50;
             }
@@ -256,6 +256,7 @@ class Memoria {
     newGame(){
         this.start = true;
         this.clicavel = true;
+        this.cartasViradas = [];
     }
 }
 
