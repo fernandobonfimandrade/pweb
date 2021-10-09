@@ -10,17 +10,17 @@
     <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
-    <div id="info">
-        <div class="buttons">
-            <div class="gameButtons" onclick="newGame()">Novo Jogo</div>
-            <div class="gameButtons" onclick="escolhaDificuldade()">Dificuldade</div>
-        </div>
-        <div class="timer">
-            <div id="timerBar"></div>
-            <span id="timerText">-</span>
-        </div>
-    </div>
     <div class="container">
+        <div id="info">
+            <div class="buttons">
+                <div class="gameButtons" onclick="newGame()">Novo Jogo</div>
+                <div class="gameButtons" onclick="escolhaDificuldade()">Dificuldade</div>
+            </div>
+            <div class="timer">
+                <div id="timerBar"></div>
+                <span id="timerText">-</span>
+            </div>
+        </div>
         <div id="board" class="grid-container">
         </div>
     </div>
@@ -113,6 +113,7 @@ function addClass(ele,cls) {
 
 function removeClass(ele,cls) {
   if (hasClass(ele,cls)) {
+      console.log(ele);
     var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
     ele.className=ele.className.replace(reg,'');
   }
@@ -197,7 +198,7 @@ class Memoria {
     };
     criarCard(icone,valor){
         const gridItem = document.createElement('div');
-        gridItem.className = 'grid-item';
+        gridItem.className = 'grid-item virar';
         gridItem.onclick = () => { this.virarCarta(gridItem,valor) };
         
         const card = document.createElement('div');
@@ -218,22 +219,29 @@ class Memoria {
         return;
     };
     init(){
-        // if(document.getElementsByClassName('virar').length > 0){
-        //     Array.prototype.forEach.call(document.getElementsByClassName('virar'),element => {
-        //         this.desvirarCarta(element);
-        //     });
-        // }
-        // setTimeout(() => {
+        const qtd = document.getElementsByClassName('grid-item').length;
+        const viradas = document.getElementsByClassName('grid-item');
+        let timeout = 0;
+        if(qtd > 0){
+            for (let index = 0; index < qtd; index++) {
+                setTimeout(() => {
+                console.log(index);
+                this.desvirarCarta(viradas[index]);
+                }, timeout);
+                timeout+=50;
+            }
+        }
+        setTimeout(() => {
             document.getElementById('board').innerHTML = '';
             const windowHeight = document.body.offsetHeight;
             const qtdCardas = 2 * parseInt((windowHeight - 40)/110);    
             const embaralhar = shuffle(baralho);
-            let baralhoJogo = embaralhar.slice(0,qtdCardas);
+            let baralhoJogo = embaralhar.slice(0,qtdCardas > 12 ? 12 : qtdCardas );
             baralhoJogo = shuffle(baralhoJogo.concat(baralhoJogo));
             for (let index = 0; index < baralhoJogo.length; index++) {
                 this.criarCard(baralhoJogo[index].icone,baralhoJogo[index].valor);
             }
-        // }, 1000);
+        }, timeout+500);
     };
     dificuldade(){
         const dificuldade = document.getElementsByName('dificuldade');
@@ -273,6 +281,7 @@ function newGame(){
 document.addEventListener("DOMContentLoaded", function(event) { 
     const game = init();
 })
+
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker

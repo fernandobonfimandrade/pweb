@@ -146,6 +146,10 @@ html,body{
     padding: 3px;
 }
 
+.gameButtons:nth-child(2){
+    background-color: rgb(87, 40, 218);
+}
+
 .modal{
     display: none;
     position: absolute;
