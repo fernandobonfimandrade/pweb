@@ -198,7 +198,7 @@ class Memoria {
     };
     criarCard(icone,valor){
         const gridItem = document.createElement('div');
-        gridItem.className = 'grid-item virar';
+        gridItem.className = 'grid-item';
         gridItem.onclick = () => { this.virarCarta(gridItem,valor) };
         
         const card = document.createElement('div');
