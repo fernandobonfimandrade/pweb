@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 13</title>
+</head>
+
+<body>
+    <div class="container">
+        <form name="formulario1" id="formulario1">
+            <label for="maiusculo">Maiúsculo</label>
+            <input type="checkbox" id="maiusculo" name="maiusculo">
+            <label for="minusculo">Minúsculo</label>
+            <input type="checkbox" id="minusculo" name="minusculo">
+            <br>
+            <label for="primMaiusculo">Primeira Maiuscula</label>
+            <input type="checkbox" id="primMaiusculo" name="primMaiusculo">
+            <p>
+                <label for="texto">Digite um palavra:</label>
+                <br><input type="text" id="texto" name="texto">
+            </p>
+        </form>
+    </div>
+</body>
+<script>
+const changeMaiusculo = document.getElementById('maiusculo');
+const changeMinusculo = document.getElementById('minusculo');
+const primeiraMaiuscula = document.getElementById('primMaiusculo');
+const texto = document.getElementById('texto');
+
+changeMinusculo.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        texto.value = texto.value.toLowerCase();
+    }
+})
+
+changeMaiusculo.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        texto.value = texto.value.toUpperCase();
+    }
+})
+
+primeiraMaiuscula.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        texto.value = texto.value[0].toUpperCase() + texto.value.substr(1);
+    }
+})
+</script>
+</html>
