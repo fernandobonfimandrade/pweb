@@ -7,6 +7,46 @@
     <title>Atv 15</title>
 </head>
 <body>
-    
+    <section class="container">
+       <label>
+           <select name="pagina" id="pagina">
+               <option value="" readonly>Selecione</option>
+               <option value="ads">Analise e desenvolvimento de sistemas</option>
+               <option value="sbm">Sis. Bio-Medicos</option>
+           </select>
+       </label>
+    </section>  
 </body>
+<script>
+
+const pagina = document.getElementById('pagina');
+
+pagina.addEventListener('change', function(){
+    let paginaNome = '';
+    let paginaConteudo = '';
+    if(pagina.value != '' && confirm('Deseja realmente abrir a pagina do curso?')){
+        switch (pagina.value) {
+        case 'ads':
+            paginaNome = 'Analise e desenvolvimento de sistemas';
+            paginaConteudo = `<h1>Analise e desenvolvimento de sistemas</h1>
+                            <p>Turnos disponíveis: Diurno e Noturno</p>
+                            <p>Vagas: 60</p>
+                            <p>Duração: 8 Semestress</p>`;
+            break;
+        case 'sbm':
+            paginaNome = 'Sistemas Bio-Medicos';
+            paginaConteudo = `<h1>Sistemas Bio-Medicos</h1>
+                            <p>Turnos disponíveis: Diurno</p>
+                            <p>Vagas: 60</p>
+                            <p>Duração: 6 Semestress</p>`;
+        break;
+        }
+    
+        const myWindow = window.open("", paginaNome, "width=600,height=300");
+        myWindow.document.write(paginaConteudo);
+    }
+
+})
+
+</script>
 </html>
