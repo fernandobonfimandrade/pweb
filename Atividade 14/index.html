@@ -27,7 +27,7 @@
 </head>
 <body>
     <section class="container">
-        <form id="form">
+        <form name="form" id="form">
             <h1>Formulário principal</h1>
             <label class="formLabel" >Nome:
                 <input type="text" name="nome" id="nome">
@@ -61,7 +61,7 @@ const formulario = document.getElementById('form');
 
 function validaFormulario(evt){
     evt.preventDefault();
-    const nome = document.getElementById('nome');
+    const nome = document.form.elements['nome'];
     const email = document.getElementById('email');
     const comentario = document.getElementById('comentario');
     const preimeiraVez = document.querySelector('input[name=preimeiraVez]:checked');
@@ -70,7 +70,7 @@ function validaFormulario(evt){
         alert('o nome deve ter pelo menos 10 caracteres!');
         return;
     }
-    if(/^.*?@.*?.com*(\.\w{2,3})+$/.test(email.value)){
+    if(!/^.*?@.*?.com(\.\w{2,3})*$/.test(email.value)){
         alert('o e-mail nao é válido!');
         return;
     }
