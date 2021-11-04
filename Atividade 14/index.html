@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atv 14</title>
+    <style>
+        .container{
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            align-content: center;
+        }
+        .container from{
+            display: flex;
+            max-width: 600px;
+        }
+        .formLabel input,.formLabel textarea{
+            display: block;
+            width: 100%;
+        }
+        .formButtons{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section class="container">
+        <form id="form">
+            <h1>Formulário principal</h1>
+            <label class="formLabel" >Nome:
+                <input type="text" name="nome" id="nome">
+            </label>
+            <label class="formLabel" >E-mail:
+                <input type="text" name="email" id="email">
+            </label>
+            <label class="formLabel" >Comentário:
+                <textarea name="comentario" id="comentario" rows="5" ></textarea>
+            </label>
+            <h4>Pesquisa</h4>
+            <h6>Primeira vez na página?</h6>
+            <label>Sim
+                <input type="radio" name="preimeiraVez" value="s" >
+            </label>
+            <label>Não
+                <input type="radio" name="preimeiraVez" value="n" >
+            </label>
+            <br>
+            <div class="formButtons">
+                <input type="reset" value="Limpar">
+                <input type="submit" value="Enviar">
+            </div>
+        </form>
+    </section>    
+</body>
+<script>
+
+const formulario = document.getElementById('form');
+
+
+function validaFormulario(evt){
+    evt.preventDefault();
+    const nome = document.getElementById('nome');
+    const email = document.getElementById('email');
+    const comentario = document.getElementById('comentario');
+    const preimeiraVez = document.querySelector('input[name=preimeiraVez]:checked');
+
+    if(nome.value.length < 10){
+        alert('o nome deve ter pelo menos 10 caracteres!');
+        return;
+    }
+    if(/^.*?@.*?.com*(\.\w{2,3})+$/.test(email.value)){
+        alert('o e-mail nao é válido!');
+        return;
+    }
+    if(comentario.value.length < 20){
+        alert('o comentário deve ter pelo menos 20 caracteres!');
+        return;
+    }
+    if(preimeiraVez === null){
+        alert('informe a resposta para a pesquisa!');
+        return;
+    }
+
+    console.log({
+        nome:nome.value,
+        email:email.value,
+        comentario:comentario.value,
+        preimeiraVez: 
+        preimeiraVez.value});
+}
+
+formulario.addEventListener('submit', validaFormulario);
+
+</script>
+</html>
