@@ -137,3 +137,9 @@ section p {
   color: #000;
   margin-right: -7px;
 }
+
+.projetosImg{
+  width: 90%;
+  margin: 0 auto;
+  border: solid 4px #d391fa;
+}
