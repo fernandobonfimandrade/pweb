@@ -503,11 +503,36 @@ p{
   margin-bottom: 0 !important;
   border-radius: 4px;
   filter: opacity(.8);
+  overflow: hidden;
 }
 .rotate {
   animation: rotate 5s linear infinite;
   box-shadow: 0px 35px 6px #a544fe;
 }
+
+.socialNetwork{
+  align-items: end;
+  align-content: end;
+  display: flex;
+}
+
+
+.rotate.yelow {
+  box-shadow: 0px 35px 6px rgb(251, 255, 27);
+}
+.rotate.blue {
+  box-shadow: 0px 35px 6px rgb(33, 97, 235);
+}
+.rotate.cyan {
+  box-shadow: 0px 35px 6px rgb(57, 217, 245);
+}
+.rotate.green {
+  box-shadow: 0px 35px 6px rgb(48, 228, 31);
+}
+.rotate.orange {
+  box-shadow: 0px 35px 6px rgb(255, 134, 20);
+}
+
 
 @keyframes rotate {
   from {
